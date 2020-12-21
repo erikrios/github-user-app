@@ -14,14 +14,14 @@
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:contentDescription="@string/github_octocat_logo"
+        android:src="@drawable/octocat"
         app:layout_constraintBottom_toTopOf="@id/tv_app_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
         tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="110dp"
-        tools:src="@drawable/octocat" />
+        tools:layout_editor_absoluteY="110dp" />
 
     <TextView
         android:id="@+id/tv_app_name"
@@ -39,5 +39,18 @@
         app:layout_constraintVertical_chainStyle="packed"
         tools:layout_editor_absoluteX="89dp"
         tools:layout_editor_absoluteY="580dp" />
+
+    <TextView
+        android:id="@+id/tv_developer"
+        style="@style/TextAppearance.AppCompat.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nova_flat"
+        android:gravity="center"
+        android:text="@string/developed_by"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
