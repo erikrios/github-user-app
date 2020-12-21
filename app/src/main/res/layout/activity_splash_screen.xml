@@ -4,6 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activities.SplashScreenActivity">
+    android:background="@drawable/bg_splash_screen"
+    android:padding="16dp"
+    tools:context=".ui.activities.SplashScreenActivity"
+    tools:viewBindingIgnore="true">
+
+    <ImageView
+        android:id="@+id/img_octocat"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/github_octocat_logo"
+        android:paddingHorizontal="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/octocat" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
