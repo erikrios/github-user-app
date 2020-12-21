@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import io.erikrios.github.githubuserapp.R
 
@@ -26,10 +27,18 @@ class SplashScreenActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash_screen)
         handler = Handler(Looper.getMainLooper())
         handler?.postDelayed(runnable, SPLASH_DELAY)
+        setTransparentStatusBar()
     }
 
     override fun onDestroy() {
         super.onDestroy()
         handler?.removeCallbacks(runnable)
+    }
+
+    private fun setTransparentStatusBar() {
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+        )
     }
 }
