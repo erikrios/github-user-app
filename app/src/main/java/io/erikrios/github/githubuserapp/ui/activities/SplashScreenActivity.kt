@@ -27,4 +27,9 @@ class SplashScreenActivity : AppCompatActivity() {
         handler = Handler(Looper.getMainLooper())
         handler?.postDelayed(runnable, SPLASH_DELAY)
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        handler?.removeCallbacks(runnable)
+    }
 }
