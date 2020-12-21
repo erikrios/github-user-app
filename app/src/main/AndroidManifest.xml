@@ -11,7 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GithubUserApp"
         tools:ignore="AllowBackup">
-        <activity android:name=".ui.activities.SplashScreenActivity">
+        <activity
+            android:name=".ui.activities.SplashScreenActivity"
+            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
