@@ -1,6 +1,7 @@
 package io.erikrios.github.githubuserapp.ui.activities
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import io.erikrios.github.githubuserapp.R
@@ -34,7 +35,16 @@ class DetailsActivity : AppCompatActivity() {
             fabShare.setOnClickListener {
                 share(user)
             }
+
+            fabOpenInBrowser.setOnClickListener {
+                openInBrowser(user)
+            }
         }
+    }
+
+    private fun openInBrowser(user: User) {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(user.url))
+        startActivity(intent)
     }
 
     private fun share(user: User) {
