@@ -1,6 +1,7 @@
 package io.erikrios.github.githubuserapp.adapters
 
 import android.content.Context
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import io.erikrios.github.githubuserapp.databinding.ItemUserBinding
@@ -16,12 +17,13 @@ class UserAdapter(private val context: Context, private val users: List<User>) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ItemUserBinding.bind(parent)
+        val layoutInflater = LayoutInflater.from(context)
+        val binding = ItemUserBinding.inflate(layoutInflater)
         return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(users[position], position, onItemClickListener)
+        holder.bind(users[position], onItemClickListener)
     }
 
     override fun getItemCount(): Int = users.size
@@ -29,7 +31,7 @@ class UserAdapter(private val context: Context, private val users: List<User>) :
     inner class ViewHolder(private val binding: ItemUserBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(user: User, position: Int, clickListener: ((User) -> Unit)?) {
+        fun bind(user: User, clickListener: ((User) -> Unit)?) {
             binding.apply {
                 imgAvatar.setImageResource(user.avatar)
                 tvName.text = user.name
