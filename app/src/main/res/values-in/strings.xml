@@ -4,6 +4,12 @@
     <string name="developed_by">Developed By\nErik Rio Setiawan</string>
     <string name="user_avatar">Avatar Pengguna</string>
     <string name="share_button">Tombol Bagikan</string>
+    <string name="company">Perusahaan</string>
+    <string name="location">Lokasi</string>
+    <string name="username">Nama Pengguna</string>
+    <string name="followers">Pengikut</string>
+    <string name="repository">Repository</string>
+    <string name="following">Mengikuti</string>
 
     <string-array name="username">
         <item>erikrios</item>
