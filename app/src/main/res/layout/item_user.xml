@@ -44,10 +44,22 @@
 
     <View
         android:id="@+id/v_ic_location"
-        app:layout_constraintTop_toBottomOf="@id/tv_name"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:background="@drawable/ic_baseline_place_24"
-        app:layout_constraintStart_toStartOf="@id/tv_name"/>
+        app:layout_constraintStart_toStartOf="@id/tv_name"
+        app:layout_constraintTop_toBottomOf="@id/tv_name" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:ellipsize="end"
+        android:lines="1"
+        app:layout_constraintBottom_toBottomOf="@id/v_ic_location"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/v_ic_location"
+        app:layout_constraintTop_toTopOf="@id/v_ic_location"
+        tools:text="@tools:sample/cities" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
