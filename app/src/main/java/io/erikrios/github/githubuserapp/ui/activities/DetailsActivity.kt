@@ -1,7 +1,9 @@
 package io.erikrios.github.githubuserapp.ui.activities
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import io.erikrios.github.githubuserapp.R
 import io.erikrios.github.githubuserapp.databinding.ActivityDetailsBinding
 import io.erikrios.github.githubuserapp.models.User
 
@@ -28,7 +30,21 @@ class DetailsActivity : AppCompatActivity() {
             tvFollowers.text = user.followers.toString()
             tvRepository.text = user.repository.toString()
             tvFollowing.text = user.following.toString()
+
+            fabShare.setOnClickListener {
+                share(user)
+            }
         }
+    }
+
+    private fun share(user: User) {
+        val intent = Intent(Intent.ACTION_SEND)
+        intent.putExtra(
+            Intent.EXTRA_TEXT,
+            getString(R.string.share_message, user.name, user.url)
+        )
+        intent.type = "text/plain"
+        startActivity(intent)
     }
 
     private fun setActionBar(title: String) {
