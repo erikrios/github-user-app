@@ -31,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         userAdapter.setOnItemClickListener { user ->
             val intent = Intent(this@MainActivity, DetailsActivity::class.java)
             intent.putExtra(DetailsActivity.EXTRA_USER_KEY, user)
+            startActivity(intent)
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         }
 
