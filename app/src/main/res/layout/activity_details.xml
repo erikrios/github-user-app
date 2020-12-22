@@ -211,7 +211,7 @@
                 android:id="@+id/fab_open_in_browser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="40dp"
                 android:text="@string/open_in_browser"
                 android:textColor="@android:color/white"
                 app:backgroundTint="@color/purple_200"
