@@ -2,6 +2,7 @@
     <string name="app_name">Github User</string>
     <string name="github_octocat_logo">Github Octocat Logo</string>
     <string name="developed_by">Developed By\nErik Rio Setiawan</string>
+    <string name="user_avatar">User Avatar</string>
 
     <string-array name="username">
         <item>erikrios</item>
