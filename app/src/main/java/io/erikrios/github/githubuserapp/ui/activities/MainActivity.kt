@@ -1,7 +1,7 @@
 package io.erikrios.github.githubuserapp.ui.activities
 
+import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import io.erikrios.github.githubuserapp.R
 import io.erikrios.github.githubuserapp.adapters.UserAdapter
@@ -29,7 +29,9 @@ class MainActivity : AppCompatActivity() {
     private fun setRecyclerView(users: List<User>) {
         val userAdapter = UserAdapter(this, users)
         userAdapter.setOnItemClickListener { user ->
-            Toast.makeText(this, user.name, Toast.LENGTH_SHORT).show()
+            val intent = Intent(this@MainActivity, DetailsActivity::class.java)
+            intent.putExtra(DetailsActivity.EXTRA_USER_KEY, user)
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         }
 
         binding.rvUsers.adapter = userAdapter
