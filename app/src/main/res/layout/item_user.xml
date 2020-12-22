@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_item_user"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingStart="16dp"
@@ -80,13 +81,13 @@
         android:layout_marginEnd="8dp"
         android:ellipsize="end"
         android:lines="1"
+        android:text="@tools:sample/first_names"
         app:layout_constraintBottom_toBottomOf="@id/v_ic_username"
         app:layout_constraintEnd_toStartOf="@id/v_ic_followers"
         app:layout_constraintStart_toEndOf="@id/v_ic_username"
         app:layout_constraintStart_toStartOf="@id/tv_location"
         app:layout_constraintTop_toBottomOf="@id/tv_location"
-        app:layout_constraintTop_toTopOf="@id/v_ic_username"
-        tools:text="@tools:sample/first_names" />
+        app:layout_constraintTop_toTopOf="@id/v_ic_username" />
 
     <View
         android:id="@+id/v_ic_followers"
@@ -119,6 +120,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cv_rounded" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
