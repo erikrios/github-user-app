@@ -69,7 +69,7 @@
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:background="@drawable/ic_baseline_person_24"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/cv_rounded"
         app:layout_constraintStart_toStartOf="@id/v_ic_location"
         app:layout_constraintTop_toBottomOf="@id/v_ic_location" />
 
@@ -111,6 +111,7 @@
         tools:text="@tools:sample/us_zipcodes" />
 
     <View
+        android:id="@+id/v_line"
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginTop="8dp"
