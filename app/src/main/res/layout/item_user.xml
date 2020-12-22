@@ -42,4 +42,12 @@
         tools:text="@tools:sample/full_names" />
 
 
+    <View
+        android:id="@+id/v_ic_location"
+        app:layout_constraintTop_toBottomOf="@id/tv_name"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:background="@drawable/ic_baseline_place_24"
+        app:layout_constraintStart_toStartOf="@id/tv_name"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
