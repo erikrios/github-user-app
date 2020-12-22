@@ -24,9 +24,7 @@ class UserAdapter(private val context: Context, private val users: List<User>) :
         holder.bind(users[position], position, onItemClickListener)
     }
 
-    override fun getItemCount(): Int {
-        TODO("Not yet implemented")
-    }
+    override fun getItemCount(): Int = users.size
 
     inner class ViewHolder(private val binding: ItemUserBinding) :
         RecyclerView.ViewHolder(binding.root) {
