@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         if (users.isEmpty()) {
             users = getUsers()
         }
+        setRecyclerView(users)
     }
 
     private fun setRecyclerView(users: List<User>) {
