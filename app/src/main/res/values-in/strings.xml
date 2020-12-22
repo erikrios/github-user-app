@@ -10,6 +10,7 @@
     <string name="followers">Pengikut</string>
     <string name="repository">Repository</string>
     <string name="following">Mengikuti</string>
+    <string name="open_in_browser">Buka di Peramban</string>
 
     <string-array name="username">
         <item>erikrios</item>

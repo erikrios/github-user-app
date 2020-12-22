@@ -10,6 +10,7 @@
     <string name="followers">Followers</string>
     <string name="repository">Repository</string>
     <string name="following">Following</string>
+    <string name="open_in_browser">Open in Browser</string>
 
     <string-array name="username">
         <item>erikrios</item>
