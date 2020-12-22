@@ -6,8 +6,7 @@
     android:layout_height="wrap_content"
     android:paddingStart="16dp"
     android:paddingTop="8dp"
-    android:paddingEnd="16dp"
-    android:paddingBottom="8dp">
+    android:paddingEnd="16dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_rounded"
@@ -36,6 +35,7 @@
         android:ellipsize="end"
         android:lines="1"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/v_ic_location"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/cv_rounded"
         app:layout_constraintTop_toTopOf="@id/cv_rounded"
@@ -47,6 +47,7 @@
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:background="@drawable/ic_baseline_place_24"
+        app:layout_constraintBottom_toTopOf="@id/v_ic_username"
         app:layout_constraintStart_toStartOf="@id/tv_name"
         app:layout_constraintTop_toBottomOf="@id/tv_name" />
 
@@ -68,6 +69,7 @@
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:background="@drawable/ic_baseline_person_24"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@id/v_ic_location"
         app:layout_constraintTop_toBottomOf="@id/v_ic_location" />
 
@@ -107,6 +109,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/v_ic_followers"
         tools:text="@tools:sample/us_zipcodes" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="#50000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cv_rounded" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
