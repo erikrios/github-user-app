@@ -3,6 +3,7 @@ package io.erikrios.github.githubuserapp.ui.activities
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import io.erikrios.github.githubuserapp.R
 import io.erikrios.github.githubuserapp.databinding.ActivityDetailsBinding
@@ -42,6 +43,15 @@ class DetailsActivity : AppCompatActivity() {
         }
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     private fun openInBrowser(user: User) {
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(user.url))
         startActivity(intent)
@@ -61,5 +71,6 @@ class DetailsActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
         supportActionBar?.title = title
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
     }
 }
