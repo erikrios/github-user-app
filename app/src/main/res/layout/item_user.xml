@@ -64,7 +64,7 @@
         tools:text="@tools:sample/cities" />
 
     <View
-        android:id="@+id/v_ic_person"
+        android:id="@+id/v_ic_username"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:background="@drawable/ic_baseline_person_24"
@@ -75,12 +75,38 @@
         android:id="@+id/tv_username"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/v_ic_person"
-        app:layout_constraintStart_toEndOf="@id/v_ic_person"
+        android:layout_marginEnd="8dp"
+        android:ellipsize="end"
+        android:lines="1"
+        app:layout_constraintBottom_toBottomOf="@id/v_ic_username"
+        app:layout_constraintEnd_toStartOf="@id/v_ic_followers"
+        app:layout_constraintStart_toEndOf="@id/v_ic_username"
         app:layout_constraintStart_toStartOf="@id/tv_location"
         app:layout_constraintTop_toBottomOf="@id/tv_location"
-        app:layout_constraintTop_toTopOf="@id/v_ic_person"
+        app:layout_constraintTop_toTopOf="@id/v_ic_username"
         tools:text="@tools:sample/first_names" />
+
+    <View
+        android:id="@+id/v_ic_followers"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/ic_baseline_people_24"
+        app:layout_constraintBottom_toBottomOf="@id/tv_username"
+        app:layout_constraintEnd_toStartOf="@id/tv_followers"
+        app:layout_constraintTop_toTopOf="@id/tv_username" />
+
+    <TextView
+        android:id="@+id/tv_followers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:lines="1"
+        android:maxEms="3"
+        app:layout_constraintBottom_toBottomOf="@id/v_ic_followers"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/v_ic_followers"
+        tools:text="@tools:sample/us_zipcodes" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
