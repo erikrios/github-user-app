@@ -21,7 +21,7 @@ class UserAdapter(private val context: Context, private val users: List<User>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        holder.bind(users[position], position, onItemClickListener)
     }
 
     override fun getItemCount(): Int {
