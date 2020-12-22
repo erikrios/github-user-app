@@ -214,6 +214,7 @@
                 android:layout_marginTop="20dp"
                 android:text="@string/open_in_browser"
                 android:textColor="@android:color/white"
+                app:backgroundTint="@color/purple_200"
                 app:icon="@drawable/ic_baseline_public_24"
                 app:iconTint="@android:color/white"
                 app:layout_constraintEnd_toEndOf="parent"
