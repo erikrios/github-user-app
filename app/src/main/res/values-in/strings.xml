@@ -2,6 +2,8 @@
     <string name="app_name">Github User</string>
     <string name="github_octocat_logo">Github Octocat Logo</string>
     <string name="developed_by">Developed By\nErik Rio Setiawan</string>
+    <string name="user_avatar">Avatar Pengguna</string>
+    <string name="share_button">Tombol Bagikan</string>
 
     <string-array name="username">
         <item>erikrios</item>
@@ -114,5 +116,4 @@
         <item>@drawable/user10</item>
         <item>@drawable/user11</item>
     </string-array>
-    <string name="user_avatar">Avatar Pengguna</string>
 </resources>
