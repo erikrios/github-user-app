@@ -2,12 +2,12 @@
     <!-- Base application theme. -->
     <style name="Theme.GithubUserApp" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">#4a148c</item>
-        <item name="colorPrimaryVariant">#12005e</item>
+        <item name="colorPrimary">@color/purple_dark_500</item>
+        <item name="colorPrimaryVariant">@color/purple_dark_700</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">#aa00ff</item>
-        <item name="colorSecondaryVariant">#7200ca</item>
+        <item name="colorSecondary">@color/purple_200</item>
+        <item name="colorSecondaryVariant">@color/purple_700</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
