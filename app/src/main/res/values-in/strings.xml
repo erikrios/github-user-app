@@ -114,4 +114,5 @@
         <item>@drawable/user10</item>
         <item>@drawable/user11</item>
     </string-array>
+    <string name="user_avatar">Avatar Pengguna</string>
 </resources>
