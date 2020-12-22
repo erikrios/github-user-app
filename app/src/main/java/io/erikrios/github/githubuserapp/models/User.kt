@@ -1,5 +1,9 @@
 package io.erikrios.github.githubuserapp.models
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class User(
     var username: String,
     var name: String,
@@ -9,7 +13,7 @@ data class User(
     var followers: Int,
     var following: Int,
     var avatar: Int
-) {
+) : Parcelable {
     val url get() = "https://github.com/$username"
 
     override fun toString(): String =
