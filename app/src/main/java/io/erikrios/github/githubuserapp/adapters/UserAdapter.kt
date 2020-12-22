@@ -9,6 +9,12 @@ import io.erikrios.github.githubuserapp.models.User
 class UserAdapter(private val context: Context, private val users: List<User>) :
     RecyclerView.Adapter<UserAdapter.ViewHolder>() {
 
+    private var onItemClickListener: ((User) -> Unit)? = null
+
+    fun setOnItemClickListener(listener: (User) -> Unit) {
+        onItemClickListener = listener
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         TODO("Not yet implemented")
     }
