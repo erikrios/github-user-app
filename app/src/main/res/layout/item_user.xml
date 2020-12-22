@@ -51,6 +51,7 @@
         app:layout_constraintTop_toBottomOf="@id/tv_name" />
 
     <TextView
+        android:id="@+id/tv_location"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -61,5 +62,25 @@
         app:layout_constraintStart_toEndOf="@id/v_ic_location"
         app:layout_constraintTop_toTopOf="@id/v_ic_location"
         tools:text="@tools:sample/cities" />
+
+    <View
+        android:id="@+id/v_ic_person"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:background="@drawable/ic_baseline_person_24"
+        app:layout_constraintStart_toStartOf="@id/v_ic_location"
+        app:layout_constraintTop_toBottomOf="@id/v_ic_location" />
+
+    <TextView
+        android:id="@+id/tv_username"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/v_ic_person"
+        app:layout_constraintStart_toEndOf="@id/v_ic_person"
+        app:layout_constraintStart_toStartOf="@id/tv_location"
+        app:layout_constraintTop_toBottomOf="@id/tv_location"
+        app:layout_constraintTop_toTopOf="@id/v_ic_person"
+        tools:text="@tools:sample/first_names" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
