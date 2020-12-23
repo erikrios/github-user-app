@@ -25,6 +25,17 @@
         <item>budioktaviyan</item>
         <item>hendisantika</item>
         <item>sidiqpermana</item>
+        <item>nrohmen</item>
+        <item>rizqiaryansa</item>
+        <item>arifaizin</item>
+        <item>gilangadhan</item>
+        <item>alfianhidayat</item>
+        <item>Najibsaurus</item>
+        <item>arfirman1402</item>
+        <item>alfianyusufabdullah</item>
+        <item>dimasmds</item>
+        <item>ariya</item>
+        <item>endymuhardin</item>
     </string-array>
 
     <string-array name="name">
@@ -39,6 +50,17 @@
         <item>Budi Oktaviyan</item>
         <item>Hendi Santika</item>
         <item>Sidiq Permana</item>
+        <item>Nur Rohman</item>
+        <item>Rizqi Aryansa</item>
+        <item>Ahmad Arif Faizin</item>
+        <item>Gilang Ramadhan</item>
+        <item>Alfian Hidayat</item>
+        <item>Najib Abdillah</item>
+        <item>Ar Firman Syahputra</item>
+        <item>Alfian Yusuf Abdullah</item>
+        <item>Dimas Maulana Dwi Saputra</item>
+        <item>Ariya Hidayat</item>
+        <item>Endy Muhardin</item>
     </string-array>
 
     <string-array name="location">
@@ -53,6 +75,17 @@
         <item>Jakarta, Indonesia</item>
         <item>Bojongsoang - Bandung Jawa Barat</item>
         <item>Jakarta Indonesia</item>
+        <item>Bandung, Indonesia</item>
+        <item>Indonesia</item>
+        <item>Semarang, Indonesia</item>
+        <item>Semarang, Indonesia</item>
+        <item>Bandung, Indonesia</item>
+        <item>Yogyakarta, Indonesia</item>
+        <item>South Jakarta, Jakarta, Indonesia</item>
+        <item>Gorontalo, Indonesia</item>
+        <item>Bandung, Indonesia</item>
+        <item>SF Bay Area</item>
+        <item>Jakarta, Indonesia</item>
     </string-array>
 
     <string-array name="repository">
@@ -67,6 +100,17 @@
         <item>110</item>
         <item>1064</item>
         <item>65</item>
+        <item>55</item>
+        <item>30</item>
+        <item>131</item>
+        <item>52</item>
+        <item>31</item>
+        <item>120</item>
+        <item>17</item>
+        <item>106</item>
+        <item>56</item>
+        <item>47</item>
+        <item>158</item>
     </string-array>
 
     <string-array name="company">
@@ -81,6 +125,17 @@
         <item>KotlinID</item>
         <item>JVMDeveloperID @KotlinID @IDDevOps</item>
         <item>Nusantara Beta Studio</item>
+        <item>Chief Product Officer, Dicoding Indonesia</item>
+        <item>Tokopedia</item>
+        <item>Dicoding Indonesia</item>
+        <item>Academy Content Writer at dicoding.com</item>
+        <item>Software Design Engineer at Blibli.com</item>
+        <item>External Code Reviewer at Dicoding Indonesia</item>
+        <item>Android Developer @ Bukalapak.com</item>
+        <item>Reviewer @dicodingacademy</item>
+        <item>Curriculum Developer at Dicoding Indonesia</item>
+        <item>Software Provocateur</item>
+        <item>ArtiVisi Intermedia</item>
     </string-array>
 
     <string-array name="followers">
@@ -95,6 +150,17 @@
         <item>178</item>
         <item>428</item>
         <item>465</item>
+        <item>302</item>
+        <item>25</item>
+        <item>106</item>
+        <item>147</item>
+        <item>130</item>
+        <item>46</item>
+        <item>111</item>
+        <item>190</item>
+        <item>78</item>
+        <item>3200</item>
+        <item>1000</item>
     </string-array>
 
     <string-array name="following">
@@ -109,6 +175,16 @@
         <item>23</item>
         <item>61</item>
         <item>10</item>
+        <item>9</item>
+        <item>26</item>
+        <item>16</item>
+        <item>3</item>
+        <item>5</item>
+        <item>48</item>
+        <item>185</item>
+        <item>36</item>
+        <item>0</item>
+        <item>13</item>
     </string-array>
 
     <string-array name="avatar">
@@ -123,5 +199,16 @@
         <item>@drawable/user9</item>
         <item>@drawable/user10</item>
         <item>@drawable/user11</item>
+        <item>@drawable/user12</item>
+        <item>@drawable/user13</item>
+        <item>@drawable/user14</item>
+        <item>@drawable/user15</item>
+        <item>@drawable/user16</item>
+        <item>@drawable/user17</item>
+        <item>@drawable/user18</item>
+        <item>@drawable/user19</item>
+        <item>@drawable/user20</item>
+        <item>@drawable/user21</item>
+        <item>@drawable/user22</item>
     </string-array>
 </resources>
