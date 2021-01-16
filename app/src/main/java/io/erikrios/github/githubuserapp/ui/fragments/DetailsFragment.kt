@@ -47,6 +47,8 @@ class DetailsFragment : Fragment() {
             fabOpenInBrowser.setOnClickListener {
                 openInBrowser(user)
             }
+
+            toolbar.title = user.name
         }
     }
 
