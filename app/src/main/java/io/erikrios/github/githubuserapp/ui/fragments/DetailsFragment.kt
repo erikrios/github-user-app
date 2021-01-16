@@ -6,7 +6,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import io.erikrios.github.githubuserapp.R
 import io.erikrios.github.githubuserapp.databinding.FragmentsDetailsBinding
@@ -48,7 +50,14 @@ class DetailsFragment : Fragment() {
                 openInBrowser(user)
             }
 
-            toolbar.title = user.name
+            toolbar.apply {
+                title = user.name
+                navigationIcon =
+                    ContextCompat.getDrawable(context, R.drawable.ic_baseline_arrow_back_24)
+                setNavigationOnClickListener {
+                    findNavController().popBackStack()
+                }
+            }
         }
     }
 
