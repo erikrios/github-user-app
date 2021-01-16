@@ -88,6 +88,7 @@ class SearchFragment : Fragment() {
                     return false
                 }
             })
+            clearFocus()
         }
     }
 }
