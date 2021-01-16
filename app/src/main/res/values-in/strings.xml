@@ -13,6 +13,7 @@
     <string name="open_in_browser">Buka di Peramban</string>
     <string name="share_message">Lihat Halaman Profil Github %1$s at : %2$s</string>
     <string name="search">Cari</string>
+    <string name="query_hint">Masukkan kata kunci pengguna Github</string>
 
     <string-array name="username">
         <item>erikrios</item>

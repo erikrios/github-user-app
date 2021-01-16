@@ -13,6 +13,7 @@
     <string name="open_in_browser">Open in Browser</string>
     <string name="share_message">View %1$s Github Profile Pages at : %2$s</string>
     <string name="search">Search</string>
+    <string name="query_hint">Type a Github user keyword</string>
 
     <string-array name="username">
         <item>erikrios</item>
