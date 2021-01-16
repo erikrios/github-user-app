@@ -8,7 +8,7 @@ import io.erikrios.github.githubuserapp.ui.fragments.DetailsFragment.Companion.U
 
 class DetailsPagerAdapter(
     fragmentActivity: FragmentActivity,
-    val fragments: MutableList<Fragment>,
+    val fragments: List<Fragment>,
     private val username: String
 ) :
     FragmentStateAdapter(fragmentActivity) {
