@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import io.erikrios.github.githubuserapp.databinding.FragmentFollowingBinding
+import io.erikrios.github.githubuserapp.ui.fragments.DetailsFragment.Companion.USERNAME_ARG_KEY
 
 class FollowingFragment : Fragment() {
 
@@ -19,6 +20,13 @@ class FollowingFragment : Fragment() {
     ): View? {
         _binding = FragmentFollowingBinding.inflate(inflater, container, false)
         return binding?.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        arguments?.takeIf { it.containsKey(USERNAME_ARG_KEY) }?.apply {
+            binding?.tvUsername?.text = getString(USERNAME_ARG_KEY)
+        }
     }
 
     override fun onDestroyView() {
