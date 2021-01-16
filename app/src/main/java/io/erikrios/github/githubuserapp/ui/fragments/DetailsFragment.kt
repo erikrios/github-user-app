@@ -20,6 +20,10 @@ class DetailsFragment : Fragment() {
     private val binding get() = _binding
     private val args: DetailsFragmentArgs by navArgs()
 
+    companion object {
+        const val USERNAME_ARG_KEY = "username_arg_key"
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
