@@ -81,6 +81,7 @@ class SearchFragment : Fragment() {
             setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
                     Log.i(SearchFragment::class.java.simpleName, query as String)
+                    clearFocus()
                     return true
                 }
 
@@ -88,7 +89,6 @@ class SearchFragment : Fragment() {
                     return false
                 }
             })
-            clearFocus()
         }
     }
 }
