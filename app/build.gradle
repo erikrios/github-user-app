@@ -44,12 +44,16 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation 'androidx.recyclerview:recyclerview:1.2.0-beta01'
-    implementation 'android.arch.navigation:navigation-fragment-ktx:1.0.0'
-    implementation 'android.arch.navigation:navigation-ui-ktx:1.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     //noinspection GradleDynamicVersion
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    // Recycler View
+    implementation 'androidx.recyclerview:recyclerview:1.2.0-beta01'
+
+    // Navigation Components
+    implementation 'android.arch.navigation:navigation-fragment-ktx:2.3.0'
+    implementation 'android.arch.navigation:navigation-ui-ktx:2.3.0'
 }

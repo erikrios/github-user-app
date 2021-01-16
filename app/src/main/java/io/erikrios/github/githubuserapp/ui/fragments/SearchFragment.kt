@@ -46,7 +46,6 @@ class SearchFragment : Fragment() {
 //            val intent = Intent(context, DetailsActivity::class.java)
 //            intent.putExtra(DetailsActivity.EXTRA_USER_KEY, user)
 //            startActivity(intent)
-
         }
 
         binding?.rvUsers?.adapter = userAdapter
