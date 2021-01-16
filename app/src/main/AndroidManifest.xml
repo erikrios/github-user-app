@@ -12,9 +12,6 @@
         android:theme="@style/Theme.GithubUserApp"
         tools:ignore="AllowBackup">
         <activity
-            android:name=".ui.activities.DetailsActivity"
-            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />
-        <activity
             android:name=".ui.activities.MainActivity"
             android:theme="@style/SplashScreenTheme">
             <intent-filter>
