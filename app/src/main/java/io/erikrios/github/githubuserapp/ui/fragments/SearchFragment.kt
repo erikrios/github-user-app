@@ -1,6 +1,5 @@
 package io.erikrios.github.githubuserapp.ui.fragments
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +9,6 @@ import io.erikrios.github.githubuserapp.R
 import io.erikrios.github.githubuserapp.adapters.UserAdapter
 import io.erikrios.github.githubuserapp.databinding.FragmentSearchBinding
 import io.erikrios.github.githubuserapp.models.User
-import io.erikrios.github.githubuserapp.ui.activities.DetailsActivity
 import io.erikrios.github.githubuserapp.viewmodels.MainViewModel
 
 
@@ -45,9 +43,10 @@ class SearchFragment : Fragment() {
     private fun setRecyclerView(users: List<User>) {
         val userAdapter = UserAdapter(requireContext(), users)
         userAdapter.setOnItemClickListener { user ->
-            val intent = Intent(context, DetailsActivity::class.java)
-            intent.putExtra(DetailsActivity.EXTRA_USER_KEY, user)
-            startActivity(intent)
+//            val intent = Intent(context, DetailsActivity::class.java)
+//            intent.putExtra(DetailsActivity.EXTRA_USER_KEY, user)
+//            startActivity(intent)
+
         }
 
         binding?.rvUsers?.adapter = userAdapter
