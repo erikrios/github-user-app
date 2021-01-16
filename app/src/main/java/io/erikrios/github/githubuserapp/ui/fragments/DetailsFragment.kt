@@ -67,7 +67,7 @@ class DetailsFragment : Fragment() {
                 }
             }
 
-            handleTabs(user.username)
+            handleTabs(user.username, user.followers, user.following)
         }
     }
 
@@ -86,7 +86,7 @@ class DetailsFragment : Fragment() {
         startActivity(intent)
     }
 
-    private fun handleTabs(username: String) {
+    private fun handleTabs(username: String, followers: Int, following: Int) {
         val fragments = listOf(FollowersFragment(), FollowingFragment())
         binding?.viewPager2?.adapter =
             DetailsPagerAdapter(requireActivity(), fragments, USERNAME_ARG_KEY, username)
@@ -98,9 +98,19 @@ class DetailsFragment : Fragment() {
                 when (position) {
                     0 -> {
                         text = getString(R.string.followers)
+                        val badgeDrawable = orCreateBadge
+                        badgeDrawable.backgroundColor =
+                            ContextCompat.getColor(requireContext(), R.color.purple_200)
+                        badgeDrawable.isVisible = true
+                        badgeDrawable.number = followers
                     }
                     1 -> {
                         text = getString(R.string.following)
+                        val badgeDrawable = orCreateBadge
+                        badgeDrawable.backgroundColor =
+                            ContextCompat.getColor(requireContext(), R.color.purple_200)
+                        badgeDrawable.isVisible = true
+                        badgeDrawable.number = following
                     }
                 }
             }
