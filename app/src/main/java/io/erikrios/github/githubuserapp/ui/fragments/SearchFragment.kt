@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import io.erikrios.github.githubuserapp.R
 import io.erikrios.github.githubuserapp.adapters.UserAdapter
 import io.erikrios.github.githubuserapp.databinding.FragmentSearchBinding
@@ -43,9 +44,8 @@ class SearchFragment : Fragment() {
     private fun setRecyclerView(users: List<User>) {
         val userAdapter = UserAdapter(requireContext(), users)
         userAdapter.setOnItemClickListener { user ->
-//            val intent = Intent(context, DetailsActivity::class.java)
-//            intent.putExtra(DetailsActivity.EXTRA_USER_KEY, user)
-//            startActivity(intent)
+            val action = SearchFragmentDirections.actionSearchFragmentToDetailsFragment(user)
+            findNavController().navigate(action)
         }
 
         binding?.rvUsers?.adapter = userAdapter
