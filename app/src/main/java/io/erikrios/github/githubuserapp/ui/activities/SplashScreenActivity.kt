@@ -24,6 +24,7 @@ class SplashScreenActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTheme(R.style.Theme_GithubUserApp)
         setContentView(R.layout.activity_splash_screen)
         handler = Handler(Looper.getMainLooper())
         handler?.postDelayed(runnable, SPLASH_DELAY)
