@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import io.erikrios.github.githubuserapp.databinding.ItemUserBinding
 import io.erikrios.github.githubuserapp.models.User
 
@@ -39,11 +40,11 @@ class UserAdapter(private val context: Context, private val users: List<User>) :
 
         fun bind(user: User, clickListener: ((User) -> Unit)?) {
             binding.apply {
-                imgAvatar.setImageResource(user.avatar)
-                tvName.text = user.name
-                tvLocation.text = user.location
-                tvUsername.text = user.username
-                tvFollowers.text = user.followers.toString()
+                Glide.with(itemView).load(user.avatarUrl).into(imgAvatar)
+                tvName.text = user.username
+                tvLocation.text = user.htmlUrl
+                tvUsername.text = user.type
+                tvFollowers.text = user.id.toString()
             }
 
             itemView.setOnClickListener { clickListener?.let { it(user) } }
