@@ -18,13 +18,22 @@ class MainViewModel(
         for (position in usernames.indices) {
             val user = User(
                 usernames[position],
+                123,
                 names[position],
                 locations[position],
                 repositories[position].toInt(),
+                null,
                 companies[position],
                 followers[position].toInt(),
                 followings[position].toInt(),
-                avatars.getResourceId(position, -1)
+                avatars.getResourceId(position, -1).toString(),
+                "User",
+                "",
+                null,
+                null,
+                null,
+                null,
+                null
             )
             users.add(user)
         }
