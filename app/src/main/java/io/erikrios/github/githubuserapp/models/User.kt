@@ -15,7 +15,9 @@ data class User(
     @SerializedName("location")
     var location: String?,
     @SerializedName("public_repos")
-    var repository: Int?,
+    var publicRepositories: Int?,
+    @SerializedName("public_gists")
+    var publicGists: Int?,
     @SerializedName("company")
     var company: String?,
     @SerializedName("followers")
