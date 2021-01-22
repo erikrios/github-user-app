@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 class SearchViewModel(private val repository: UserRepository) : ViewModel() {
 
     private val _viewState = MutableLiveData<UserResponseViewState>().apply {
-        value = UserResponseViewState(loading = true)
+        value = UserResponseViewState()
     }
 
     val viewState: LiveData<UserResponseViewState>
