@@ -30,4 +30,10 @@ interface GithubService {
      */
     @GET("users/{username}/followers")
     suspend fun getFollowers(@Path("username") username: String): Response<List<User>>
+
+    /**
+     * Get request to get the list following
+     */
+    @GET("users/{username}/following")
+    suspend fun getFollowing(@Path("username") username: String): Response<List<User>>
 }
