@@ -5,6 +5,18 @@ plugins {
     id 'androidx.navigation.safeargs.kotlin'
 }
 
+static def getBaseUrl() {
+    Properties props = new Properties()
+    props.load(new FileInputStream(new File('secrets.properties')))
+    return props['BASE_URL']
+}
+
+static def getAuthorization() {
+    Properties props = new Properties()
+    props.load(new FileInputStream(new File('secrets.properties')))
+    return props['AUTHORIZATION']
+}
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
@@ -17,12 +29,18 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        manifestPlaceholders = [BASE_URL: getBaseUrl(), AUTHORIZATION: getAuthorization()]
     }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        applicationVariants.all { variant ->
+            variant.buildConfigField "String", "BASE_URL", "\"" + getBaseUrl() + "\""
+            variant.buildConfigField "String", "AUTHORIZATION", "\"" + getAuthorization() + "\""
         }
     }
     compileOptions {
@@ -34,6 +52,9 @@ android {
     }
     viewBinding {
         enabled = true
+    }
+    defaultConfig {
+        vectorDrawables.useSupportLibrary = true
     }
 }
 
