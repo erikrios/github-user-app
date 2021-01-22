@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.widget.ViewPager2
+import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import io.erikrios.github.githubuserapp.R
@@ -42,12 +43,12 @@ class DetailsFragment : Fragment() {
         binding?.apply {
             val user = args.user
 
-            imgAvatar.setImageResource(user.avatar)
+            Glide.with(requireContext()).load(user.avatarUrl).into(imgAvatar)
             tvCompany.text = user.company
             tvLocation.text = user.location
             tvUsername.text = user.username
             tvFollowers.text = user.followers.toString()
-            tvRepository.text = user.repository.toString()
+            tvRepository.text = user.publicRepositories.toString()
             tvFollowing.text = user.following.toString()
 
             fabShare.setOnClickListener {
@@ -67,12 +68,12 @@ class DetailsFragment : Fragment() {
                 }
             }
 
-            handleTabs(user.username, user.followers, user.following)
+            handleTabs(user.username, user.followers as Int, user.following as Int)
         }
     }
 
     private fun openInBrowser(user: User) {
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(user.url))
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(user.htmlUrl))
         startActivity(intent)
     }
 
@@ -80,7 +81,7 @@ class DetailsFragment : Fragment() {
         val intent = Intent(Intent.ACTION_SEND)
         intent.putExtra(
             Intent.EXTRA_TEXT,
-            getString(R.string.share_message, user.name, user.url)
+            getString(R.string.share_message, user.name, user.htmlUrl)
         )
         intent.type = "text/plain"
         startActivity(intent)
