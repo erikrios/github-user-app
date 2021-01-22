@@ -1,31 +1,41 @@
 package io.erikrios.github.githubuserapp.models
 
 import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class User(
+    @SerializedName("login")
     var username: String,
-    var name: String,
-    var location: String,
-    var repository: Int,
-    var company: String,
-    var followers: Int,
-    var following: Int,
-    var avatar: Int
-) : Parcelable {
-    val url get() = "https://github.com/$username"
-
-    override fun toString(): String =
-        """
-            username: ${this.username}
-            name: ${this.name}
-            location: ${this.location}
-            repository: ${this.repository}
-            company: ${this.company}
-            followers: ${this.followers}
-            following: ${this.following}
-            avatar: ${this.avatar}
-            url: ${this.url}
-        """.trimIndent()
-}
+    @SerializedName("id")
+    var id: Long,
+    @SerializedName("name")
+    var name: String?,
+    @SerializedName("location")
+    var location: String?,
+    @SerializedName("public_repos")
+    var repository: Int?,
+    @SerializedName("company")
+    var company: String?,
+    @SerializedName("followers")
+    var followers: Int?,
+    @SerializedName("following")
+    var following: Int?,
+    @SerializedName("avatar_url")
+    var avatarUrl: String,
+    @SerializedName("type")
+    var type: String,
+    @SerializedName("html_url")
+    var htmlUrl: String,
+    @SerializedName("blog")
+    var blog: String?,
+    @SerializedName("bio")
+    var bio: String?,
+    @SerializedName("hireable")
+    var hireable: Boolean?,
+    @SerializedName("created_at")
+    var createdAt: String?,
+    @SerializedName("updated_at")
+    var updatedAt: String?
+) : Parcelable
