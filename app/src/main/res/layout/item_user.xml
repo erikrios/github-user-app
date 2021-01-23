@@ -22,9 +22,10 @@
             android:id="@+id/img_avatar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/purple_200"
+            android:src="@drawable/ic_baseline_person_24"
             android:contentDescription="@string/user_avatar"
-            android:scaleType="fitXY"
-            tools:src="@tools:sample/backgrounds/scenic" />
+            android:scaleType="fitXY" />
 
     </androidx.cardview.widget.CardView>
 
