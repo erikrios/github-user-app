@@ -46,7 +46,7 @@ class FollowingFragment : Fragment() {
     private fun setRecyclerView(users: List<User>) {
         val userAdapter = UserAdapter(requireContext(), users)
         userAdapter.setOnItemClickListener { user ->
-            Toast.makeText(requireContext(), user.name, Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), user.username, Toast.LENGTH_SHORT).show()
         }
         binding?.rvFollowing?.adapter = userAdapter
     }
