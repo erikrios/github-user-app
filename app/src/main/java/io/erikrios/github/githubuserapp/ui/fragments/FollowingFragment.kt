@@ -31,7 +31,7 @@ class FollowingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         arguments?.takeIf { it.containsKey(USERNAME_ARG_KEY) }?.apply {
             val viewModel = (parentFragment as DetailsFragment).viewModel
-            viewModel.followersViewState.observe(
+            viewModel.followingViewState.observe(
                 viewLifecycleOwner,
                 Observer(this@FollowingFragment::handleState)
             )
