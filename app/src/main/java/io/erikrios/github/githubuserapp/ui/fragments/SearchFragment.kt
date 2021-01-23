@@ -87,7 +87,14 @@ class SearchFragment : Fragment() {
             showLoading(userResponseViewState.loading)
 
             userResponseViewState.userResponse?.let { userResponse ->
-                setRecyclerView(userResponse.users)
+                if (userResponse.users.isNotEmpty()) {
+                    setRecyclerView(userResponse.users)
+                    binding?.rvUsers?.visibility = View.VISIBLE
+                    binding?.lavNotFound?.visibility = View.GONE
+                } else {
+                    binding?.rvUsers?.visibility = View.GONE
+                    binding?.lavNotFound?.visibility = View.VISIBLE
+                }
             }
 
             userResponseViewState.exception?.let { exception ->
