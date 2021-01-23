@@ -10,7 +10,7 @@ import io.erikrios.github.githubuserapp.ui.viewstates.UsersViewState
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class DetailsViewModel(private val repository: UserRepository) : ViewModel() {
+class DetailsViewModel(private val repository: UserRepository, username: String) : ViewModel() {
     private val _userViewState = MutableLiveData<UserViewState>().apply {
         value = UserViewState(loading = true)
     }
@@ -31,6 +31,12 @@ class DetailsViewModel(private val repository: UserRepository) : ViewModel() {
 
     val followingViewState: LiveData<UsersViewState>
         get() = _followingViewState
+
+    init {
+        getUserDetails(username)
+        getFollowers(username)
+        getFollowing(username)
+    }
 
     fun getUserDetails(username: String): Job {
         return viewModelScope.launch {

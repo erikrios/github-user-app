@@ -43,21 +43,19 @@ class DetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentsDetailsBinding.inflate(inflater, container, false)
+        val user = args.user
+        val factory = DetailsViewModelFactory(UserRepository(), user.username)
+        viewModel = ViewModelProvider(this, factory).get(DetailsViewModel::class.java)
 
-        val factory = DetailsViewModelFactory(UserRepository())
-        viewModel = ViewModelProvider(this, factory).get(DetailsViewModel::class.java).apply {
-            userViewState.observe(viewLifecycleOwner, Observer(this@DetailsFragment::handleState))
-        }
         return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val user = args.user
-        viewModel.getUserDetails(user.username)
-        viewModel.getFollowers(user.username)
-        viewModel.getFollowing(user.username)
+        viewModel.userViewState.observe(
+            viewLifecycleOwner,
+            Observer(this@DetailsFragment::handleState)
+        )
     }
 
     private fun openInBrowser(user: User) {
