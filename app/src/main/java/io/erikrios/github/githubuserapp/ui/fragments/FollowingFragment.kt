@@ -6,12 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import io.erikrios.github.githubuserapp.R
+import androidx.lifecycle.Observer
 import io.erikrios.github.githubuserapp.adapters.UserAdapter
 import io.erikrios.github.githubuserapp.databinding.FragmentFollowingBinding
 import io.erikrios.github.githubuserapp.models.User
 import io.erikrios.github.githubuserapp.ui.fragments.DetailsFragment.Companion.USERNAME_ARG_KEY
-import io.erikrios.github.githubuserapp.viewmodels.MainViewModel
+import io.erikrios.github.githubuserapp.ui.viewstates.UsersViewState
 
 class FollowingFragment : Fragment() {
 
@@ -30,7 +30,11 @@ class FollowingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         arguments?.takeIf { it.containsKey(USERNAME_ARG_KEY) }?.apply {
-            setRecyclerView(getUsers())
+            val viewModel = (parentFragment as DetailsFragment).viewModel
+            viewModel.followersViewState.observe(
+                viewLifecycleOwner,
+                Observer(this@FollowingFragment::handleState)
+            )
         }
     }
 
@@ -47,18 +51,25 @@ class FollowingFragment : Fragment() {
         binding?.rvFollowing?.adapter = userAdapter
     }
 
-    private fun getUsers(): List<User> {
-        val viewModel = MainViewModel(
-            resources.getStringArray(R.array.username),
-            resources.getStringArray(R.array.name),
-            resources.getStringArray(R.array.location),
-            resources.getStringArray(R.array.repository),
-            resources.getStringArray(R.array.company),
-            resources.getStringArray(R.array.followers),
-            resources.getStringArray(R.array.following),
-            resources.obtainTypedArray(R.array.avatar)
-        )
+    private fun handleState(viewState: UsersViewState?) {
+        viewState?.let { followingViewState ->
+            showLoading(followingViewState.loading)
 
-        return viewModel.getUsers()
+            followingViewState.users?.let { user ->
+                setRecyclerView(user)
+            }
+
+            followingViewState.exception?.let { exception ->
+                showError(exception)
+            }
+        }
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding?.progressBar?.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
+
+    private fun showError(exception: Exception) {
+        Toast.makeText(context, exception.message, Toast.LENGTH_SHORT).show()
     }
 }
