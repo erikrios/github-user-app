@@ -128,8 +128,8 @@ class DetailsFragment : Fragment() {
     private fun handleView(user: User) {
         binding?.apply {
             Glide.with(requireContext()).load(user.avatarUrl).into(imgAvatar)
-            tvCompany.text = user.company
-            tvLocation.text = user.location
+            user.company?.let { tvCompany.text = it }
+            user.location?.let { tvLocation.text = it }
             tvUsername.text = user.username
             tvFollowers.text = user.followers.toString()
             tvRepository.text = user.publicRepositories.toString()
