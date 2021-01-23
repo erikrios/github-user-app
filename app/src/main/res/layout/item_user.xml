@@ -14,6 +14,7 @@
         android:id="@+id/cv_rounded"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        app:cardBackgroundColor="@android:color/darker_gray"
         app:cardCornerRadius="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -22,10 +23,9 @@
             android:id="@+id/img_avatar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/purple_200"
-            android:src="@drawable/ic_baseline_person_24"
             android:contentDescription="@string/user_avatar"
-            android:scaleType="fitXY" />
+            android:scaleType="fitXY"
+            tools:src="@tools:sample/backgrounds/scenic" />
 
     </androidx.cardview.widget.CardView>
 
