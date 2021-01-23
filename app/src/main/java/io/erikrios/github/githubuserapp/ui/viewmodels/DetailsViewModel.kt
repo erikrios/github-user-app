@@ -38,7 +38,7 @@ class DetailsViewModel(private val repository: UserRepository, username: String)
         getFollowing(username)
     }
 
-    fun getUserDetails(username: String): Job {
+    private fun getUserDetails(username: String): Job {
         return viewModelScope.launch {
             _userViewState.value = UserViewState(loading = true)
 
@@ -68,7 +68,7 @@ class DetailsViewModel(private val repository: UserRepository, username: String)
         }
     }
 
-    fun getFollowers(username: String): Job {
+    private fun getFollowers(username: String): Job {
         return viewModelScope.launch {
             _followersViewState.value = UsersViewState(loading = true)
 
@@ -99,7 +99,7 @@ class DetailsViewModel(private val repository: UserRepository, username: String)
         }
     }
 
-    fun getFollowing(username: String): Job {
+    private fun getFollowing(username: String): Job {
         return viewModelScope.launch {
             _followingViewState.value = UsersViewState(loading = true)
 
