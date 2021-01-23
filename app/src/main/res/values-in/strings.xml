@@ -14,6 +14,7 @@
     <string name="share_message">Lihat Halaman Profil Github %1$s at : %2$s</string>
     <string name="search">Cari</string>
     <string name="query_hint">Masukkan kata kunci pengguna Github</string>
+    <string name="no_data">Tidak Ada Data</string>
 
     <string-array name="username">
         <item>erikrios</item>
