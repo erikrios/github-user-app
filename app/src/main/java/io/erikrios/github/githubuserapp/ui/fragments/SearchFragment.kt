@@ -104,7 +104,19 @@ class SearchFragment : Fragment() {
     }
 
     private fun showLoading(isLoading: Boolean) {
-        binding?.progressBar?.visibility = if (isLoading) View.VISIBLE else View.GONE
+        if (isLoading) {
+            binding?.apply {
+                progressBar.visibility = View.VISIBLE
+                rvUsers.visibility = View.GONE
+                lavNotFound.visibility = View.GONE
+            }
+        } else {
+            binding?.apply {
+                progressBar.visibility = View.GONE
+                rvUsers.visibility = View.VISIBLE
+                lavNotFound.visibility = View.VISIBLE
+            }
+        }
     }
 
     private fun showError(exception: Exception) {
