@@ -157,7 +157,13 @@ class DetailsFragment : Fragment() {
     }
 
     private fun showLoading(isLoading: Boolean) {
-        binding?.progressBar?.visibility = if (isLoading) View.VISIBLE else View.GONE
+        if (isLoading) {
+            binding?.progressBar?.visibility = View.VISIBLE
+            binding?.appBarLayout?.visibility = View.INVISIBLE
+        } else {
+            binding?.progressBar?.visibility = View.GONE
+            binding?.appBarLayout?.visibility = View.VISIBLE
+        }
     }
 
     private fun showError(exception: Exception) {
