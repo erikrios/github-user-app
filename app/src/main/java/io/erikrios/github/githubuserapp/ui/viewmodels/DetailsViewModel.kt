@@ -92,4 +92,35 @@ class DetailsViewModel(private val repository: UserRepository) : ViewModel() {
             }
         }
     }
+
+    fun getFollowing(username: String): Job {
+        return viewModelScope.launch {
+            _followingViewState.value = UsersViewState(loading = true)
+
+            try {
+                val response = repository.getFollowing(username)
+
+                when {
+                    response.isSuccessful -> {
+                        _followingViewState.value = UsersViewState(
+                            loading = false,
+                            responseCode = response.code(),
+                            users = response.body()
+                        )
+                    }
+                    else -> {
+                        _followingViewState.value = UsersViewState(
+                            loading = false,
+                            responseCode = response.code(),
+                            exception = Exception("Error to get data with response code ${response.code()}.")
+                        )
+                    }
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                _followingViewState.value =
+                    UsersViewState(loading = false, exception = Exception(e))
+            }
+        }
+    }
 }
