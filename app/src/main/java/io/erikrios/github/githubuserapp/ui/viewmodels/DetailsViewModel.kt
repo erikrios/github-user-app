@@ -15,7 +15,7 @@ class DetailsViewModel(private val repository: UserRepository) : ViewModel() {
         value = UserViewState(loading = true)
     }
 
-    val viewState: LiveData<UserViewState>
+    val userViewState: LiveData<UserViewState>
         get() = _userViewState
 
     private val _followersViewState = MutableLiveData<UsersViewState>().apply {
