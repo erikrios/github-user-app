@@ -78,7 +78,7 @@ class DetailsFragment : Fragment() {
     private fun handleTabs(username: String, followers: Int, following: Int) {
         val fragments = listOf(FollowersFragment(), FollowingFragment())
         binding?.viewPager2?.adapter =
-            DetailsPagerAdapter(requireActivity(), fragments, USERNAME_ARG_KEY, username)
+            DetailsPagerAdapter(this, fragments, USERNAME_ARG_KEY, username)
         TabLayoutMediator(
             binding?.tabLayout as TabLayout,
             binding?.viewPager2 as ViewPager2
