@@ -6,8 +6,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.widget.ViewPager2
@@ -18,12 +21,17 @@ import io.erikrios.github.githubuserapp.R
 import io.erikrios.github.githubuserapp.adapters.DetailsPagerAdapter
 import io.erikrios.github.githubuserapp.databinding.FragmentsDetailsBinding
 import io.erikrios.github.githubuserapp.models.User
+import io.erikrios.github.githubuserapp.repositories.UserRepository
+import io.erikrios.github.githubuserapp.ui.viewmodels.DetailsViewModel
+import io.erikrios.github.githubuserapp.ui.viewmodels.DetailsViewModelFactory
+import io.erikrios.github.githubuserapp.ui.viewstates.UserViewState
 
 class DetailsFragment : Fragment() {
 
     private var _binding: FragmentsDetailsBinding? = null
     private val binding get() = _binding
     private val args: DetailsFragmentArgs by navArgs()
+    lateinit var viewModel: DetailsViewModel
 
     companion object {
         const val USERNAME_ARG_KEY = "username_arg_key"
@@ -35,41 +43,21 @@ class DetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentsDetailsBinding.inflate(inflater, container, false)
+
+        val factory = DetailsViewModelFactory(UserRepository())
+        viewModel = ViewModelProvider(this, factory).get(DetailsViewModel::class.java).apply {
+            userViewState.observe(viewLifecycleOwner, Observer(this@DetailsFragment::handleState))
+        }
         return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding?.apply {
-            val user = args.user
 
-            Glide.with(requireContext()).load(user.avatarUrl).into(imgAvatar)
-            tvCompany.text = user.company
-            tvLocation.text = user.location
-            tvUsername.text = user.username
-            tvFollowers.text = user.followers.toString()
-            tvRepository.text = user.publicRepositories.toString()
-            tvFollowing.text = user.following.toString()
-
-            fabShare.setOnClickListener {
-                share(user)
-            }
-
-            fabOpenInBrowser.setOnClickListener {
-                openInBrowser(user)
-            }
-
-            toolbar.apply {
-                title = user.name
-                navigationIcon =
-                    ContextCompat.getDrawable(context, R.drawable.ic_baseline_arrow_back_24)
-                setNavigationOnClickListener {
-                    findNavController().popBackStack()
-                }
-            }
-
-            handleTabs(user.username, user.followers as Int, user.following as Int)
-        }
+        val user = args.user
+        viewModel.getUserDetails(user.username)
+        viewModel.getFollowers(user.username)
+        viewModel.getFollowing(user.username)
     }
 
     private fun openInBrowser(user: User) {
@@ -121,5 +109,58 @@ class DetailsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun handleState(viewState: UserViewState?) {
+        viewState?.let { userViewState ->
+            showLoading(userViewState.loading)
+
+            userViewState.user?.let { user ->
+                handleView(user)
+            }
+
+            userViewState.exception?.let { exception ->
+                showError(exception)
+            }
+        }
+    }
+
+    private fun handleView(user: User) {
+        binding?.apply {
+            Glide.with(requireContext()).load(user.avatarUrl).into(imgAvatar)
+            tvCompany.text = user.company
+            tvLocation.text = user.location
+            tvUsername.text = user.username
+            tvFollowers.text = user.followers.toString()
+            tvRepository.text = user.publicRepositories.toString()
+            tvFollowing.text = user.following.toString()
+
+            fabShare.setOnClickListener {
+                share(user)
+            }
+
+            fabOpenInBrowser.setOnClickListener {
+                openInBrowser(user)
+            }
+
+            toolbar.apply {
+                title = user.name
+                navigationIcon =
+                    ContextCompat.getDrawable(context, R.drawable.ic_baseline_arrow_back_24)
+                setNavigationOnClickListener {
+                    findNavController().popBackStack()
+                }
+            }
+
+            handleTabs(user.username, user.followers as Int, user.following as Int)
+        }
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding?.progressBar?.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
+
+    private fun showError(exception: Exception) {
+        Toast.makeText(context, exception.message, Toast.LENGTH_SHORT).show()
     }
 }
