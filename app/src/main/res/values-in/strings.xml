@@ -18,5 +18,7 @@
     <string name="settings">Pengaturan</string>
     <string name="reminder">Pengingat</string>
     <string name="reminder_description">Ingatkan saya untuk kembali ke aplikasi pada pukul 09.00 pagi</string>
-    <string name="favorite">Favorit</string>
+    <string name="favorites">Favorit</string>
+    <string name="favorite_added">Berhasil menambahkan ke favorit</string>
+    <string name="favorite_removed">Berasil menghapus dari favorit</string>
 </resources>

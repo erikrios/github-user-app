@@ -18,5 +18,7 @@
     <string name="settings">Settings</string>
     <string name="reminder">Reminder</string>
     <string name="reminder_description">Remind me to go back to the app at 09.00 AM</string>
-    <string name="favorite">Favorite</string>
+    <string name="favorites">Favorites</string>
+    <string name="favorite_added">Successfully added to favorite</string>
+    <string name="favorite_removed">Successfully removed from favorite</string>
 </resources>
