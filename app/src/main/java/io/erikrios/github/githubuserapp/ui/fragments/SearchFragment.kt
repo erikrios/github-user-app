@@ -21,7 +21,6 @@ import io.erikrios.github.githubuserapp.ui.viewmodels.SearchViewModel
 import io.erikrios.github.githubuserapp.ui.viewmodels.SearchViewModelFactory
 import io.erikrios.github.githubuserapp.ui.viewstates.UserResponseViewState
 
-
 class SearchFragment : Fragment() {
 
     private var _binding: FragmentSearchBinding? = null
@@ -43,6 +42,7 @@ class SearchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        navigateToSettings()
         handleSearch()
     }
 
@@ -59,6 +59,13 @@ class SearchFragment : Fragment() {
         }
 
         binding?.rvUsers?.adapter = userAdapter
+    }
+
+    private fun navigateToSettings() {
+        binding?.toolbar?.menu?.findItem(R.id.item_settings)?.setOnMenuItemClickListener {
+            findNavController().navigate(R.id.action_searchFragment_to_settingsFragment)
+            return@setOnMenuItemClickListener true
+        }
     }
 
     private fun handleSearch() {
