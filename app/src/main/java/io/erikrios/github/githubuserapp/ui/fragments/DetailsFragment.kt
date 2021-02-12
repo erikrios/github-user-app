@@ -121,7 +121,7 @@ class DetailsFragment : Fragment() {
                     .show()
                 ContextCompat.getDrawable(
                     requireContext(),
-                    R.drawable.ic_baseline_favorite_border_24
+                    R.drawable.ic_baseline_favorite_24
                 )
             } else {
                 isFavorite = false
@@ -129,7 +129,7 @@ class DetailsFragment : Fragment() {
                     .show()
                 ContextCompat.getDrawable(
                     requireContext(),
-                    R.drawable.ic_baseline_favorite_24
+                    R.drawable.ic_baseline_favorite_border_24
                 )
             }
             item.icon = drawableIcon
