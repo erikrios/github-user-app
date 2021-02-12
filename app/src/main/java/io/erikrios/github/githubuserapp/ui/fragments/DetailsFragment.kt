@@ -1,6 +1,7 @@
 package io.erikrios.github.githubuserapp.ui.fragments
 
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -32,6 +33,7 @@ class DetailsFragment : Fragment() {
     private val binding get() = _binding
     private val args: DetailsFragmentArgs by navArgs()
     lateinit var viewModel: DetailsViewModel
+    private var isFavorite = false
 
     companion object {
         const val USERNAME_ARG_KEY = "username_arg_key"
@@ -52,10 +54,16 @@ class DetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        handleFavorites()
         viewModel.userViewState.observe(
             viewLifecycleOwner,
             Observer(this@DetailsFragment::handleState)
         )
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     private fun openInBrowser(user: User) {
@@ -104,9 +112,29 @@ class DetailsFragment : Fragment() {
         }.attach()
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    private fun handleFavorites() {
+        val menuItem = binding?.toolbar?.menu?.findItem(R.id.item_favorite)
+        menuItem?.setOnMenuItemClickListener { item ->
+            val drawableIcon: Drawable? = if (!isFavorite) {
+                isFavorite = true
+                Toast.makeText(context, getString(R.string.favorite_added), Toast.LENGTH_SHORT)
+                    .show()
+                ContextCompat.getDrawable(
+                    requireContext(),
+                    R.drawable.ic_baseline_favorite_border_24
+                )
+            } else {
+                isFavorite = false
+                Toast.makeText(context, getString(R.string.favorite_removed), Toast.LENGTH_SHORT)
+                    .show()
+                ContextCompat.getDrawable(
+                    requireContext(),
+                    R.drawable.ic_baseline_favorite_24
+                )
+            }
+            item.icon = drawableIcon
+            return@setOnMenuItemClickListener true
+        }
     }
 
     private fun handleState(viewState: UserViewState?) {
