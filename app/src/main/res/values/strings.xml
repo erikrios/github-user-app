@@ -15,4 +15,5 @@
     <string name="search">Search</string>
     <string name="query_hint">Type a Github user keyword</string>
     <string name="no_data">No Data</string>
+    <string name="settings">Settings</string>
 </resources>

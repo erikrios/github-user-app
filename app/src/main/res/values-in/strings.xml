@@ -15,4 +15,5 @@
     <string name="search">Cari</string>
     <string name="query_hint">Masukkan kata kunci pengguna Github</string>
     <string name="no_data">Tidak Ada Data</string>
+    <string name="settings">Pengaturan</string>
 </resources>
