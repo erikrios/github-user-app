@@ -22,6 +22,7 @@
     <style name="Theme.GithubUserApp.Toolbar" parent="Theme.GithubUserApp">
         <item name="android:textColorPrimary">@android:color/white</item>
         <item name="android:textColorSecondary">@android:color/white</item>
+        <item name="android:textColorHint">@color/grey</item>
     </style>
 
     <style name="SplashScreenTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
