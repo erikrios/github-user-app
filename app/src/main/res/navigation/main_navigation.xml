@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_searchFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"
@@ -23,4 +26,9 @@
             android:name="user"
             app:argType="io.erikrios.github.githubuserapp.models.User" />
     </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="io.erikrios.github.githubuserapp.ui.fragments.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
 </navigation>
