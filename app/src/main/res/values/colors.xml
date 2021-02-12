@@ -7,4 +7,5 @@
     <color name="purple_700">#7200ca</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="grey">#808080</color>
 </resources>
