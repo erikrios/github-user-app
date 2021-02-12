@@ -62,8 +62,29 @@ class SearchFragment : Fragment() {
     }
 
     private fun navigateToSettings() {
-        binding?.toolbar?.menu?.findItem(R.id.item_settings)?.setOnMenuItemClickListener {
-            findNavController().navigate(R.id.action_searchFragment_to_settingsFragment)
+        val menuItem = binding?.toolbar?.menu?.findItem(R.id.item_settings)
+        menuItem?.setOnMenuItemClickListener {
+            val user = User(
+                username = "erikrios",
+                1,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                "",
+                "tes",
+                "ets",
+                null,
+                null,
+                null,
+                null,
+                null
+            )
+            val action = SearchFragmentDirections.actionSearchFragmentToSettingsFragment()
+            findNavController().navigate(action)
             return@setOnMenuItemClickListener true
         }
     }
