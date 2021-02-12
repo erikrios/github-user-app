@@ -64,25 +64,6 @@ class SearchFragment : Fragment() {
     private fun navigateToSettings() {
         val menuItem = binding?.toolbar?.menu?.findItem(R.id.item_settings)
         menuItem?.setOnMenuItemClickListener {
-            val user = User(
-                username = "erikrios",
-                1,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                "",
-                "tes",
-                "ets",
-                null,
-                null,
-                null,
-                null,
-                null
-            )
             val action = SearchFragmentDirections.actionSearchFragmentToSettingsFragment()
             findNavController().navigate(action)
             return@setOnMenuItemClickListener true
