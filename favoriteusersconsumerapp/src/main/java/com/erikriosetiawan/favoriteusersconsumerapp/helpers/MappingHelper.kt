@@ -25,7 +25,7 @@ import com.erikriosetiawan.favoriteusersconsumerapp.models.User
 object MappingHelper {
 
     fun mapCursorToArrayList(usersCursor: Cursor?): List<User> {
-        val users = mutableListOf<User>()
+        val users = ArrayList<User>()
 
         usersCursor?.apply {
             while (moveToNext()) {
