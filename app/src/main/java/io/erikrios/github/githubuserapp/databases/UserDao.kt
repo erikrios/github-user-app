@@ -19,5 +19,5 @@ interface UserDao {
     suspend fun getUser(id: Long): User
 
     @Delete
-    suspend fun deleteUser(user: User)
+    suspend fun deleteUser(user: User): Long
 }
