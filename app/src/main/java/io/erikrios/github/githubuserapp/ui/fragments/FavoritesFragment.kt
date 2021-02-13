@@ -42,6 +42,11 @@ class FavoritesFragment : Fragment() {
         viewModel.usersViewState.observe(viewLifecycleOwner, this@FavoritesFragment::handleState)
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.getFavoriteUsers()
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

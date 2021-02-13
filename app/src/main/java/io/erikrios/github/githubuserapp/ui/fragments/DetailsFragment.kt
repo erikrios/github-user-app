@@ -3,6 +3,7 @@ package io.erikrios.github.githubuserapp.ui.fragments
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -49,15 +50,14 @@ class DetailsFragment : Fragment() {
         val repository = UserRepository(UserDatabase(requireContext()))
         val factory =
             DetailsViewModelFactory(repository, user.username)
-        viewModel = ViewModelProvider(this, factory).get(DetailsViewModel::class.java).apply {
-            isUserExists(user)
-        }
-
+        viewModel = ViewModelProvider(this, factory).get(DetailsViewModel::class.java)
         return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.isUserExists(user)
+
         viewModel.userViewState.observe(
             viewLifecycleOwner,
             Observer(this@DetailsFragment::handleState)
@@ -120,6 +120,7 @@ class DetailsFragment : Fragment() {
     }
 
     private fun handleFavorites(isExists: Boolean) {
+        Log.d("TES123", isExists.toString())
         val menuItem = binding?.toolbar?.menu?.findItem(R.id.item_favorite)
 
         menuItem?.icon = if (isExists) ContextCompat.getDrawable(
@@ -132,20 +133,15 @@ class DetailsFragment : Fragment() {
 
         menuItem?.setOnMenuItemClickListener {
             if (!isExists) {
-                viewModel.apply {
-                    saveToFavorites(user)
-                    isUserExists(user)
-                }
+                viewModel.saveToFavorites(user)
                 Toast.makeText(context, getString(R.string.favorite_added), Toast.LENGTH_SHORT)
                     .show()
             } else {
-                viewModel.apply {
-                    deleteFromFavorites(user)
-                    isUserExists(user)
-                }
+                viewModel.deleteFromFavorites(user)
                 Toast.makeText(context, getString(R.string.favorite_removed), Toast.LENGTH_SHORT)
                     .show()
             }
+            viewModel.isUserExists(user)
             return@setOnMenuItemClickListener true
         }
     }

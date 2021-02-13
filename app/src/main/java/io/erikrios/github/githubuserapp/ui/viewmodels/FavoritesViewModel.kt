@@ -20,7 +20,7 @@ class FavoritesViewModel(private val repository: UserRepository) : ViewModel() {
         getFavoriteUsers()
     }
 
-    private fun getFavoriteUsers(): Job {
+    fun getFavoriteUsers(): Job {
         return viewModelScope.launch {
             _usersViewState.value = UsersViewState(loading = true)
 
