@@ -137,10 +137,9 @@ class DetailsViewModel(private val repository: UserRepository, username: String)
         }
     }
 
-    fun isUserExists(id: Long): Job = viewModelScope.launch {
-        val user = repository.getUser(id)
-        _isUserExistsViewState.value = user != null
-
+    fun isUserExists(user: User): Job = viewModelScope.launch {
+        val userResult = repository.getUser(user.id)
+        _isUserExistsViewState.value = userResult != null
     }
 
     fun saveToFavorites(user: User): Job = viewModelScope.launch {
