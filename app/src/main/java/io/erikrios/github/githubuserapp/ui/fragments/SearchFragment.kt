@@ -66,7 +66,10 @@ class SearchFragment : Fragment() {
     }
 
     private fun navigateToSettings() {
+        val spannableTitle = SpannableString(getString(R.string.settings))
+        spannableTitle.setSpan(ForegroundColorSpan(Color.BLACK), 0, spannableTitle.length, 0)
         val menuItem = binding?.toolbar?.menu?.findItem(R.id.item_settings)
+        menuItem?.title = spannableTitle
         menuItem?.setOnMenuItemClickListener {
             val action = SearchFragmentDirections.actionSearchFragmentToSettingsFragment()
             findNavController().navigate(action)
