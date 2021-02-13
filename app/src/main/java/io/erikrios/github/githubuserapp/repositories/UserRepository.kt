@@ -19,9 +19,9 @@ class UserRepository(private val db: UserDatabase? = null) {
 
     suspend fun insert(user: User) = db?.getUserDao()?.insert(user)
 
-    fun getUsers() = db?.getUserDao()?.getUsers()
+    suspend fun getUsers() = db?.getUserDao()?.getUsers()
 
-    fun getUser(id: Long) = db?.getUserDao()?.getUser(id)
+    suspend fun getUser(id: Long) = db?.getUserDao()?.getUser(id)
 
     suspend fun deleteUser(user: User) = db?.getUserDao()?.deleteUser(user)
 }
