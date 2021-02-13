@@ -2,7 +2,10 @@ package io.erikrios.github.githubuserapp.ui.fragments
 
 import android.app.SearchManager
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -72,7 +75,10 @@ class SearchFragment : Fragment() {
     }
 
     private fun navigateToFavorites() {
+        val spannableTitle = SpannableString(getString(R.string.favorites))
+        spannableTitle.setSpan(ForegroundColorSpan(Color.BLACK), 0, spannableTitle.length, 0)
         val menuItem = binding?.toolbar?.menu?.findItem(R.id.item_favorites)
+        menuItem?.title = spannableTitle
         menuItem?.setOnMenuItemClickListener {
             val action = SearchFragmentDirections.actionSearchFragmentToFavoritesFragment()
             findNavController().navigate(action)
