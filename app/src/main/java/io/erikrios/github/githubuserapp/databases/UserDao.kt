@@ -13,7 +13,7 @@ interface UserDao {
     suspend fun insert(user: User): Long
 
     @Query("SELECT * FROM $TABLE_NAME ORDER BY $COLUMN_USERNAME")
-    suspend fun getUsers(): List<User>
+    fun getUsers(): List<User>
 
     @Query("SELECT * FROM $TABLE_NAME WHERE $COLUMN_ID = :id")
     suspend fun getUser(id: Long): User
