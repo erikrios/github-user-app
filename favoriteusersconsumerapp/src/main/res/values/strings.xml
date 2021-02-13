@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Favorite Users Consumer App</string>
+    <string name="favorite_user_empty">Favorite users is empty</string>
 </resources>
