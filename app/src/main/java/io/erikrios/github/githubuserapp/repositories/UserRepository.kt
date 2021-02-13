@@ -5,7 +5,7 @@ import io.erikrios.github.githubuserapp.models.User
 import io.erikrios.github.githubuserapp.services.ServiceBuilder
 import io.erikrios.github.githubuserapp.services.UserService
 
-class UserRepository(private val db: UserDatabase? = null) {
+class UserRepository(private val db: UserDatabase) {
 
     private val userService = ServiceBuilder.buildService(UserService::class.java)
 
@@ -17,11 +17,11 @@ class UserRepository(private val db: UserDatabase? = null) {
 
     suspend fun getFollowing(username: String) = userService.getFollowing(username)
 
-    suspend fun insert(user: User) = db?.getUserDao()?.insert(user)
+    suspend fun insert(user: User) = db.getUserDao().insert(user)
 
-    suspend fun getUsers() = db?.getUserDao()?.getUsers()
+    suspend fun getUsers() = db.getUserDao().getUsers()
 
-    suspend fun getUser(id: Long) = db?.getUserDao()?.getUser(id)
+    suspend fun getUser(id: Long) = db.getUserDao().getUser(id)
 
-    suspend fun deleteUser(user: User) = db?.getUserDao()?.deleteUser(user)
+    suspend fun deleteUser(user: User) = db.getUserDao().deleteUser(user)
 }
