@@ -41,10 +41,10 @@ class UserAdapter(private val context: Context, private val users: List<User>) :
         fun bind(user: User, clickListener: ((User) -> Unit)?) {
             binding.apply {
                 Glide.with(itemView).load(user.avatarUrl).into(imgAvatar)
-                tvName.text = user.username
-                tvLocation.text = user.htmlUrl
-                tvUsername.text = user.type
-                tvFollowers.text = user.id.toString()
+                tvUsername.text = user.username
+                tvUrl.text = user.htmlUrl
+                tvType.text = user.type
+                tvId.text = user.id.toString()
             }
 
             itemView.setOnClickListener { clickListener?.let { it(user) } }
