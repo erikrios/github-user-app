@@ -23,7 +23,7 @@ interface UserDao {
     suspend fun updateUser(user: User): Int
 
     @Delete
-    suspend fun deleteUser(user: User): Long
+    suspend fun deleteUser(user: User): Int
 
     @Query("DELETE FROM $TABLE_NAME WHERE $COLUMN_ID = :id")
     suspend fun deleteUserById(id: Long): Int
