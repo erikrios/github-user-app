@@ -155,6 +155,7 @@ class DetailsFragment : Fragment() {
             showLoading(userViewState.loading)
 
             userViewState.user?.let { user ->
+                this.user = user
                 handleView(user)
             }
 
