@@ -137,11 +137,9 @@ class DetailsViewModel(private val repository: UserRepository, username: String)
         }
     }
 
-    fun isUserExists(user: User) {
-        val count = repository.isExists(user.id)
-        count?.let {
-            _isUserExistsViewState.value = it > 0
-        }
+    fun isUserExists(user: User): Job = viewModelScope.launch {
+        val userResult = repository.getUser(user.id)
+        _isUserExistsViewState.value = userResult != null
     }
 
     fun saveToFavorites(user: User): Job = viewModelScope.launch {

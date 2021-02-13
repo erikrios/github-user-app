@@ -33,7 +33,4 @@ interface UserDao {
 
     @Query("SELECT * FROM $TABLE_NAME WHERE $COLUMN_ID = :id")
     fun getFavoriteUser(id: Long): Cursor
-
-    @Query("SELECT COUNT($COLUMN_ID) FROM $TABLE_NAME WHERE $COLUMN_ID = :id")
-    fun isExists(id: Long): Int
 }
