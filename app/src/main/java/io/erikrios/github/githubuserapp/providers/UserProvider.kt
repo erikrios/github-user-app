@@ -37,15 +37,9 @@ class UserProvider : ContentProvider() {
         selectionArgs: Array<String>?, sortOrder: String?
     ): Cursor {
         return when (sUriMather.match(uri)) {
-            USER ->
-                runBlocking {
-                    UserDatabase(requireContext()).getUserDao().getFavoriteUsers()
-                }
-            USER_ID ->
-                runBlocking {
-                    UserDatabase(requireContext()).getUserDao()
-                        .getFavoriteUser(uri.lastPathSegment.toString().toLong())
-                }
+            USER -> UserDatabase(requireContext()).getUserDao().getFavoriteUsers()
+            USER_ID -> UserDatabase(requireContext()).getUserDao()
+                .getFavoriteUser(uri.lastPathSegment.toString().toLong())
             else -> throw IllegalArgumentException("Unknown URI: $uri")
         }
     }

@@ -28,12 +28,9 @@ interface UserDao {
     @Query("DELETE FROM $TABLE_NAME WHERE $COLUMN_ID = :id")
     suspend fun deleteUserById(id: Long): Int
 
-    @SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
-
     @Query("SELECT * FROM $TABLE_NAME ORDER BY $COLUMN_USERNAME")
-    suspend fun getFavoriteUsers(): Cursor
+    fun getFavoriteUsers(): Cursor
 
-    @SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
     @Query("SELECT * FROM $TABLE_NAME WHERE $COLUMN_ID = :id")
-    suspend fun getFavoriteUser(id: Long): Cursor
+    fun getFavoriteUser(id: Long): Cursor
 }
