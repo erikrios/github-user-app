@@ -16,6 +16,10 @@ class FavoritesViewModel(private val repository: UserRepository) : ViewModel() {
 
     val usersViewState: LiveData<UsersViewState> get() = _usersViewState
 
+    init {
+        getFavoriteUsers()
+    }
+
     private fun getFavoriteUsers(): Job {
         return viewModelScope.launch {
             _usersViewState.value = UsersViewState(loading = true)
