@@ -1,9 +1,6 @@
 package io.erikrios.github.githubuserapp.providers
 
-import android.content.ContentProvider
-import android.content.ContentUris
-import android.content.ContentValues
-import android.content.UriMatcher
+import android.content.*
 import android.database.Cursor
 import android.net.Uri
 import io.erikrios.github.githubuserapp.databases.DatabaseContract.AUTHORITY
@@ -37,8 +34,8 @@ class UserProvider : ContentProvider() {
         selectionArgs: Array<String>?, sortOrder: String?
     ): Cursor {
         return when (sUriMather.match(uri)) {
-            USER -> UserDatabase(requireContext()).getUserDao().getFavoriteUsers()
-            USER_ID -> UserDatabase(requireContext()).getUserDao()
+            USER -> UserDatabase(context as Context).getUserDao().getFavoriteUsers()
+            USER_ID -> UserDatabase(context as Context).getUserDao()
                 .getFavoriteUser(uri.lastPathSegment.toString().toLong())
             else -> throw IllegalArgumentException("Unknown URI: $uri")
         }
@@ -55,11 +52,11 @@ class UserProvider : ContentProvider() {
         }
     }
 
-    override fun insert(uri: Uri, values: ContentValues?): Uri? {
+    override fun insert(uri: Uri, values: ContentValues?): Uri {
         return when (sUriMather.match(uri)) {
             USER -> {
                 runBlocking {
-                    val id = UserDatabase(requireContext()).getUserDao()
+                    val id = UserDatabase(context as Context).getUserDao()
                         .insert(fromContentValues(values))
                     context?.contentResolver?.notifyChange(uri, null)
                     ContentUris.withAppendedId(uri, id)
@@ -81,7 +78,7 @@ class UserProvider : ContentProvider() {
                 val user = fromContentValues(values)
                 user.id = id
                 runBlocking {
-                    val count = UserDatabase(requireContext()).getUserDao().updateUser(user)
+                    val count = UserDatabase(context as Context).getUserDao().updateUser(user)
                     context?.contentResolver?.notifyChange(uri, null)
                     count
                 }
@@ -96,7 +93,7 @@ class UserProvider : ContentProvider() {
             USER_ID -> {
                 val id = uri.lastPathSegment.toString().toLong()
                 runBlocking {
-                    val count = UserDatabase(requireContext()).getUserDao().deleteUserById(id)
+                    val count = UserDatabase(context as Context).getUserDao().deleteUserById(id)
                     context?.contentResolver?.notifyChange(uri, null)
                     count
                 }
