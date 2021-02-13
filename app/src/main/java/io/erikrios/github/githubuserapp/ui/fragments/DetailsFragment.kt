@@ -3,7 +3,6 @@ package io.erikrios.github.githubuserapp.ui.fragments
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -120,7 +119,6 @@ class DetailsFragment : Fragment() {
     }
 
     private fun handleFavorites(isExists: Boolean) {
-        Log.d("TES123", isExists.toString())
         val menuItem = binding?.toolbar?.menu?.findItem(R.id.item_favorite)
 
         menuItem?.icon = if (isExists) ContextCompat.getDrawable(
