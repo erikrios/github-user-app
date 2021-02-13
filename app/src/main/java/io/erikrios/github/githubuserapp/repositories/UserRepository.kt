@@ -24,4 +24,6 @@ class UserRepository(private val db: UserDatabase? = null) {
     suspend fun getUser(id: Long) = db?.getUserDao()?.getUser(id)
 
     suspend fun deleteUser(user: User) = db?.getUserDao()?.deleteUser(user)
+
+    fun isExists(id: Long) = db?.getUserDao()?.isExists(id)
 }
