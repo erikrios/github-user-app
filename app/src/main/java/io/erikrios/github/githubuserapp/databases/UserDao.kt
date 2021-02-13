@@ -26,7 +26,7 @@ interface UserDao {
     suspend fun deleteUser(user: User): Long
 
     @Query("DELETE FROM $TABLE_NAME WHERE $COLUMN_ID = :id")
-    suspend fun deleteUserById(id: Long)
+    suspend fun deleteUserById(id: Long): Int
 
     @Query("SELECT * FROM $TABLE_NAME ORDER BY $COLUMN_USERNAME")
     suspend fun getFavoriteUsers(): Cursor
