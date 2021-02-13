@@ -13,4 +13,10 @@
         android:icon="@drawable/ic_baseline_settings_24"
         android:title="@string/settings"
         app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/item_favorites"
+        android:icon="@drawable/ic_baseline_favorite_24"
+        android:title="@string/favorites"
+        app:showAsAction="never" />
 </menu>
