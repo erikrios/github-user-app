@@ -43,6 +43,7 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navigateToSettings()
+        navigateToFavorites()
         handleSearch()
     }
 
@@ -65,6 +66,15 @@ class SearchFragment : Fragment() {
         val menuItem = binding?.toolbar?.menu?.findItem(R.id.item_settings)
         menuItem?.setOnMenuItemClickListener {
             val action = SearchFragmentDirections.actionSearchFragmentToSettingsFragment()
+            findNavController().navigate(action)
+            return@setOnMenuItemClickListener true
+        }
+    }
+
+    private fun navigateToFavorites() {
+        val menuItem = binding?.toolbar?.menu?.findItem(R.id.item_favorites)
+        menuItem?.setOnMenuItemClickListener {
+            val action = SearchFragmentDirections.actionSearchFragmentToFavoritesFragment()
             findNavController().navigate(action)
             return@setOnMenuItemClickListener true
         }
