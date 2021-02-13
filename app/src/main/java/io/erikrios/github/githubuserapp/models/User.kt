@@ -1,5 +1,6 @@
 package io.erikrios.github.githubuserapp.models
 
+import android.content.ContentValues
 import android.os.Parcelable
 import android.provider.BaseColumns
 import androidx.room.ColumnInfo
@@ -14,56 +15,56 @@ import kotlinx.parcelize.Parcelize
 data class User(
     @SerializedName("login")
     @ColumnInfo(name = COLUMN_USERNAME)
-    var username: String,
+    var username: String = "",
     @SerializedName("id")
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = COLUMN_ID)
-    var id: Long,
+    var id: Long = 0,
     @SerializedName("name")
     @ColumnInfo(name = COLUMN_NAME)
-    var name: String?,
+    var name: String? = null,
     @SerializedName("location")
     @ColumnInfo(name = COLUMN_LOCATION)
-    var location: String?,
+    var location: String? = null,
     @SerializedName("public_repos")
     @ColumnInfo(name = COLUMN_PUBLIC_REPOSITORIES)
-    var publicRepositories: Int?,
+    var publicRepositories: Int? = null,
     @SerializedName("public_gists")
     @ColumnInfo(name = COLUMN_PUBLIC_GISTS)
-    var publicGists: Int?,
+    var publicGists: Int? = null,
     @SerializedName("company")
     @ColumnInfo(name = COLUMN_COMPANY)
-    var company: String?,
+    var company: String? = null,
     @SerializedName("followers")
     @ColumnInfo(name = COLUMN_FOLLOWERS)
-    var followers: Int?,
+    var followers: Int? = null,
     @SerializedName("following")
     @ColumnInfo(name = COLUMN_FOLLOWING)
-    var following: Int?,
+    var following: Int? = null,
     @SerializedName("avatar_url")
     @ColumnInfo(name = COLUMN_AVATAR_URL)
-    var avatarUrl: String,
+    var avatarUrl: String = "",
     @SerializedName("type")
     @ColumnInfo(name = COLUMN_TYPE)
-    var type: String,
+    var type: String = "",
     @SerializedName("html_url")
     @ColumnInfo(name = COLUMN_HTML_URL)
-    var htmlUrl: String,
+    var htmlUrl: String = "",
     @SerializedName("blog")
     @ColumnInfo(name = COLUMN_BLOG)
-    var blog: String?,
+    var blog: String? = null,
     @SerializedName("bio")
     @ColumnInfo(name = COLUMN_BIO)
-    var bio: String?,
+    var bio: String? = null,
     @SerializedName("hireable")
     @ColumnInfo(name = COLUMN_HIREABLE)
-    var hireable: Boolean?,
+    var hireable: Boolean? = null,
     @SerializedName("created_at")
     @ColumnInfo(name = COLUMN_CREATED_AT)
-    var createdAt: String?,
+    var createdAt: String? = null,
     @SerializedName("updated_at")
     @ColumnInfo(name = COLUMN_UPDATED_AT)
-    var updatedAt: String?
+    var updatedAt: String = ""
 ) : Parcelable {
     companion object {
         const val TABLE_NAME = "users"
@@ -84,5 +85,46 @@ data class User(
         const val COLUMN_HIREABLE = "hireable"
         const val COLUMN_CREATED_AT = "created_at"
         const val COLUMN_UPDATED_AT = "updated_at"
+
+        fun fromContentValues(values: ContentValues?): User {
+            val user = User()
+            values?.let { contentValues ->
+                contentValues.apply {
+                    if (containsKey(COLUMN_ID)) user.id = getAsLong(COLUMN_ID)
+                    if (containsKey(COLUMN_USERNAME)) user.username = getAsString(COLUMN_USERNAME)
+                    if (containsKey(COLUMN_NAME)) user.name = getAsString(COLUMN_NAME)
+                    if (containsKey(COLUMN_LOCATION)) user.location = getAsString(COLUMN_LOCATION)
+                    if (containsKey(COLUMN_PUBLIC_REPOSITORIES)) user.publicRepositories =
+                        getAsInteger(
+                            COLUMN_PUBLIC_REPOSITORIES
+                        )
+                    if (containsKey(COLUMN_PUBLIC_GISTS)) user.publicGists = getAsInteger(
+                        COLUMN_PUBLIC_GISTS
+                    )
+                    if (containsKey(COLUMN_COMPANY)) user.company = getAsString(COLUMN_COMPANY)
+                    if (containsKey(COLUMN_FOLLOWERS)) user.followers = getAsInteger(
+                        COLUMN_FOLLOWERS
+                    )
+                    if (containsKey(COLUMN_FOLLOWING)) user.following = getAsInteger(
+                        COLUMN_FOLLOWING
+                    )
+                    if (containsKey(COLUMN_AVATAR_URL)) user.avatarUrl = getAsString(
+                        COLUMN_AVATAR_URL
+                    )
+                    if (containsKey(COLUMN_TYPE)) user.type = getAsString(COLUMN_TYPE)
+                    if (containsKey(COLUMN_HTML_URL)) user.htmlUrl = getAsString(COLUMN_HTML_URL)
+                    if (containsKey(COLUMN_BLOG)) user.blog = getAsString(COLUMN_BLOG)
+                    if (containsKey(COLUMN_BIO)) user.bio = getAsString(COLUMN_BIO)
+                    if (containsKey(COLUMN_HIREABLE)) user.hireable = getAsBoolean(COLUMN_HIREABLE)
+                    if (containsKey(COLUMN_CREATED_AT)) user.createdAt = getAsString(
+                        COLUMN_CREATED_AT
+                    )
+                    if (containsKey(COLUMN_UPDATED_AT)) user.updatedAt = getAsString(
+                        COLUMN_UPDATED_AT
+                    )
+                }
+            }
+            return user
+        }
     }
 }
