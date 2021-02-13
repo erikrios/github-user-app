@@ -38,5 +38,9 @@
         android:id="@+id/favoritesFragment"
         android:name="io.erikrios.github.githubuserapp.ui.fragments.FavoritesFragment"
         android:label="fragment_favorites"
-        tools:layout="@layout/fragment_favorites" />
+        tools:layout="@layout/fragment_favorites" >
+        <action
+            android:id="@+id/action_favoritesFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
 </navigation>
