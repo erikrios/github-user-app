@@ -1,7 +1,6 @@
 package io.erikrios.github.githubuserapp.ui.fragments
 
 import android.content.Intent
-import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -20,6 +19,7 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import io.erikrios.github.githubuserapp.R
 import io.erikrios.github.githubuserapp.adapters.DetailsPagerAdapter
+import io.erikrios.github.githubuserapp.databases.UserDatabase
 import io.erikrios.github.githubuserapp.databinding.FragmentsDetailsBinding
 import io.erikrios.github.githubuserapp.models.User
 import io.erikrios.github.githubuserapp.repositories.UserRepository
@@ -32,8 +32,8 @@ class DetailsFragment : Fragment() {
     private var _binding: FragmentsDetailsBinding? = null
     private val binding get() = _binding
     private val args: DetailsFragmentArgs by navArgs()
+    private lateinit var user: User
     lateinit var viewModel: DetailsViewModel
-    private var isFavorite = false
 
     companion object {
         const val USERNAME_ARG_KEY = "username_arg_key"
@@ -45,19 +45,26 @@ class DetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentsDetailsBinding.inflate(inflater, container, false)
-        val user = args.user
-        val factory = DetailsViewModelFactory(UserRepository(), user.username)
-        viewModel = ViewModelProvider(this, factory).get(DetailsViewModel::class.java)
+        user = args.user
+        val repository = UserRepository(UserDatabase(requireContext()))
+        val factory =
+            DetailsViewModelFactory(repository, user.username)
+        viewModel = ViewModelProvider(this, factory).get(DetailsViewModel::class.java).apply {
+            isUserExists(user)
+        }
 
         return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        handleFavorites()
         viewModel.userViewState.observe(
             viewLifecycleOwner,
             Observer(this@DetailsFragment::handleState)
+        )
+        viewModel.isUserExistsViewState.observe(
+            viewLifecycleOwner,
+            Observer(this@DetailsFragment::handleFavorites)
         )
     }
 
@@ -112,27 +119,33 @@ class DetailsFragment : Fragment() {
         }.attach()
     }
 
-    private fun handleFavorites() {
+    private fun handleFavorites(isExists: Boolean) {
         val menuItem = binding?.toolbar?.menu?.findItem(R.id.item_favorite)
-        menuItem?.setOnMenuItemClickListener { item ->
-            val drawableIcon: Drawable? = if (!isFavorite) {
-                isFavorite = true
+
+        menuItem?.icon = if (isExists) ContextCompat.getDrawable(
+            requireContext(),
+            R.drawable.ic_baseline_favorite_24
+        ) else ContextCompat.getDrawable(
+            requireContext(),
+            R.drawable.ic_baseline_favorite_border_24
+        )
+
+        menuItem?.setOnMenuItemClickListener {
+            if (!isExists) {
+                viewModel.apply {
+                    saveToFavorites(user)
+                    isUserExists(user)
+                }
                 Toast.makeText(context, getString(R.string.favorite_added), Toast.LENGTH_SHORT)
                     .show()
-                ContextCompat.getDrawable(
-                    requireContext(),
-                    R.drawable.ic_baseline_favorite_24
-                )
             } else {
-                isFavorite = false
+                viewModel.apply {
+                    deleteFromFavorites(user)
+                    isUserExists(user)
+                }
                 Toast.makeText(context, getString(R.string.favorite_removed), Toast.LENGTH_SHORT)
                     .show()
-                ContextCompat.getDrawable(
-                    requireContext(),
-                    R.drawable.ic_baseline_favorite_border_24
-                )
             }
-            item.icon = drawableIcon
             return@setOnMenuItemClickListener true
         }
     }
