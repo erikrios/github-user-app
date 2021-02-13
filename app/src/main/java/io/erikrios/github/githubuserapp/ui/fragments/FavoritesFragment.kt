@@ -7,8 +7,11 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import io.erikrios.github.githubuserapp.R
+import io.erikrios.github.githubuserapp.adapters.UserAdapter
 import io.erikrios.github.githubuserapp.databinding.FragmentFavoritesBinding
+import io.erikrios.github.githubuserapp.models.User
 
 class FavoritesFragment : Fragment() {
 
@@ -28,6 +31,11 @@ class FavoritesFragment : Fragment() {
         handleToolbar()
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     private fun handleToolbar() {
         binding?.toolbar?.apply {
             navigationIcon =
@@ -36,5 +44,14 @@ class FavoritesFragment : Fragment() {
                 findNavController().popBackStack()
             }
         }
+    }
+
+    private fun setRecyclerView(users: List<User>) {
+        val userAdapter = UserAdapter(requireContext(), users)
+        userAdapter.setOnItemClickListener { user ->
+            val action = FavoritesFragmentDirections.actionFavoritesFragmentToDetailsFragment(user)
+            findNavController().navigate(action)
+        }
+        binding?.rvUsers?.adapter = userAdapter
     }
 }
