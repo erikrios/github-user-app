@@ -23,7 +23,7 @@
             android:id="@+id/img_avatar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:contentDescription="@string/user_avatar"
+            android:contentDescription="@string/app_name"
             android:scaleType="fitXY"
             tools:src="@tools:sample/backgrounds/scenic" />
 
