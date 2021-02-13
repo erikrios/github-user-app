@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import io.erikrios.github.githubuserapp.models.User
 import io.erikrios.github.githubuserapp.repositories.UserRepository
 import io.erikrios.github.githubuserapp.ui.viewstates.UserViewState
 import io.erikrios.github.githubuserapp.ui.viewstates.UsersViewState
@@ -136,10 +137,17 @@ class DetailsViewModel(private val repository: UserRepository, username: String)
         }
     }
 
-    fun isUserExists(id: Long): Job {
-        return viewModelScope.launch {
-            val user = repository.getUser(id)
-            _isUserExistsViewState.value = user != null
-        }
+    fun isUserExists(id: Long): Job = viewModelScope.launch {
+        val user = repository.getUser(id)
+        _isUserExistsViewState.value = user != null
+
+    }
+
+    fun saveToFavorites(user: User): Job = viewModelScope.launch {
+        repository.insert(user)
+    }
+
+    fun deleteFromFavorites(user: User): Job = viewModelScope.launch {
+        repository.deleteUser(user)
     }
 }
