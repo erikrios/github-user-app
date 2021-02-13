@@ -24,7 +24,7 @@ import com.erikriosetiawan.favoriteusersconsumerapp.models.User
 
 object MappingHelper {
 
-    fun mapCursorToArrayList(usersCursor: Cursor?): List<User> {
+    fun mapCursorToArrayList(usersCursor: Cursor?): ArrayList<User> {
         val users = ArrayList<User>()
 
         usersCursor?.apply {
