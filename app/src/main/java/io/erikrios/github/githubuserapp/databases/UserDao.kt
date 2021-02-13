@@ -16,7 +16,7 @@ interface UserDao {
     fun getUsers(): List<User>
 
     @Query("SELECT * FROM $TABLE_NAME WHERE $COLUMN_ID = :id")
-    suspend fun getUser(id: Long): User
+    fun getUser(id: Long): User
 
     @Delete
     suspend fun deleteUser(user: User)
