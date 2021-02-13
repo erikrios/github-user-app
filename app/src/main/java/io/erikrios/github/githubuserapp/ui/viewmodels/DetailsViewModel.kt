@@ -32,6 +32,12 @@ class DetailsViewModel(private val repository: UserRepository, username: String)
     val followingViewState: LiveData<UsersViewState>
         get() = _followingViewState
 
+    private val _isUserExistsViewState = MutableLiveData<Boolean>().apply {
+        value = false
+    }
+
+    val isUserExistsViewState: LiveData<Boolean> get() = _isUserExistsViewState
+
     init {
         getUserDetails(username)
         getFollowers(username)
@@ -127,6 +133,13 @@ class DetailsViewModel(private val repository: UserRepository, username: String)
                 _followingViewState.value =
                     UsersViewState(loading = false, exception = Exception(e))
             }
+        }
+    }
+
+    fun isUserExists(id: Long): Job {
+        return viewModelScope.launch {
+            val user = repository.getUser(id)
+            _isUserExistsViewState.value = user != null
         }
     }
 }
