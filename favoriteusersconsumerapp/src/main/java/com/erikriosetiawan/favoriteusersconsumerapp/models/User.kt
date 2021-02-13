@@ -1,5 +1,9 @@
 package com.erikriosetiawan.favoriteusersconsumerapp.models
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class User(
     var username: String = "",
     var id: Long = 0,
@@ -18,4 +22,4 @@ data class User(
     var hireable: Boolean? = null,
     var createdAt: String? = null,
     var updatedAt: String = ""
-)
+) : Parcelable
