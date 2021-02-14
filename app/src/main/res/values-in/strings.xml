@@ -21,4 +21,5 @@
     <string name="favorites">Favorit</string>
     <string name="favorite_added">Berhasil menambahkan ke favorit</string>
     <string name="favorite_removed">Berasil menghapus dari favorit</string>
+    <string name="back_to_app_message">Jangan lupa kembali ke aplikasi</string>
 </resources>
