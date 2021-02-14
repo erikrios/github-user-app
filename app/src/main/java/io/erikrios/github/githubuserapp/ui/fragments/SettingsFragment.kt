@@ -11,6 +11,7 @@ import androidx.navigation.findNavController
 import io.erikrios.github.githubuserapp.R
 import io.erikrios.github.githubuserapp.databinding.FragmentSettingsBinding
 import io.erikrios.github.githubuserapp.datastrores.SettingPreferences
+import io.erikrios.github.githubuserapp.receivers.AlarmReceiver.Companion.TYPE_REMINDER
 import io.erikrios.github.githubuserapp.ui.viewmodels.SettingsViewModel
 import io.erikrios.github.githubuserapp.ui.viewmodels.SettingsViewModelFactory
 
@@ -39,6 +40,16 @@ class SettingsFragment : Fragment() {
 
         binding?.switchReminder?.setOnCheckedChangeListener { _, isChecked ->
             viewModel.setNotificationState(isChecked)
+            if (isChecked) {
+                viewModel.setReminderAlarm(
+                    requireContext(),
+                    TYPE_REMINDER,
+                    getString(R.string.app_name),
+                    getString(R.string.back_to_app_message)
+                )
+            } else {
+                viewModel.cancelAlarm(requireContext(), TYPE_REMINDER)
+            }
         }
     }
 
