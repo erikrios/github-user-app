@@ -25,10 +25,14 @@ class SettingsViewModel(private val preferences: SettingPreferences) : ViewModel
     }
 
     fun setReminderAlarm(context: Context, type: String, title: String, message: String) {
-        alarmReceiver.setReminderAlarm(context, type, title, message)
+        if (!alarmReceiver.isReminderAlreadyExists(context, type)) {
+            alarmReceiver.setReminderAlarm(context, type, title, message)
+        }
     }
 
     fun cancelAlarm(context: Context, type: String) {
-        alarmReceiver.cancelAlarm(context, type)
+        if (alarmReceiver.isReminderAlreadyExists(context, type)) {
+            alarmReceiver.cancelAlarm(context, type)
+        }
     }
 }

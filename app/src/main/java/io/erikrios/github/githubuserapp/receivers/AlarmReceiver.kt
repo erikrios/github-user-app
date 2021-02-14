@@ -4,6 +4,7 @@ import android.app.AlarmManager
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
+import android.app.PendingIntent.FLAG_NO_CREATE
 import android.app.PendingIntent.FLAG_UPDATE_CURRENT
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -47,8 +48,8 @@ class AlarmReceiver : BroadcastReceiver() {
 
         val calendar = Calendar.getInstance()
         calendar.apply {
-            set(Calendar.HOUR_OF_DAY, 9)
-            set(Calendar.MINUTE, 0)
+            set(Calendar.HOUR_OF_DAY, 16)
+            set(Calendar.MINUTE, 44)
             set(Calendar.SECOND, 0)
             set(Calendar.MILLISECOND, 0)
         }
@@ -72,6 +73,13 @@ class AlarmReceiver : BroadcastReceiver() {
         pendingIntent.cancel()
         alarmManager.cancel(pendingIntent)
         Toast.makeText(context, R.string.reminder_canceled, Toast.LENGTH_SHORT).show()
+    }
+
+    fun isReminderAlreadyExists(context: Context, type: String): Boolean {
+        val requestCode = if (type.equals(TYPE_REMINDER, ignoreCase = true)) ID_REMINDER else -1
+        val intent = Intent(context, AlarmReceiver::class.java)
+        val pendingIntent = PendingIntent.getBroadcast(context, requestCode, intent, FLAG_NO_CREATE)
+        return pendingIntent != null
     }
 
     private fun showAlarmNotification(

@@ -1,6 +1,7 @@
 package io.erikrios.github.githubuserapp.ui.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,11 +37,7 @@ class SettingsFragment : Fragment() {
         handleToolbar()
         viewModel.isNotificationActive().observe(viewLifecycleOwner) { isActive ->
             binding?.switchReminder?.isChecked = isActive
-        }
-
-        binding?.switchReminder?.setOnCheckedChangeListener { _, isChecked ->
-            viewModel.setNotificationState(isChecked)
-            if (isChecked) {
+            if (isActive) {
                 viewModel.setReminderAlarm(
                     requireContext(),
                     TYPE_REMINDER,
@@ -50,6 +47,10 @@ class SettingsFragment : Fragment() {
             } else {
                 viewModel.cancelAlarm(requireContext(), TYPE_REMINDER)
             }
+        }
+
+        binding?.switchReminder?.setOnCheckedChangeListener { _, isChecked ->
+            viewModel.setNotificationState(isChecked)
         }
     }
 
