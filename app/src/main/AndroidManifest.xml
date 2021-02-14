@@ -20,6 +20,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GithubUserApp"
         tools:ignore="AllowBackup">
+        <receiver
+            android:name=".receivers.AlarmReceiver"
+            android:enabled="true"
+            android:exported="true" />
+
         <provider
             android:name=".providers.UserProvider"
             android:authorities="io.erikrios.github.githubuserapp"
