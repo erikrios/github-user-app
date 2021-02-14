@@ -24,4 +24,5 @@
     <string name="back_to_app_message">Jangan lupa kembali ke aplikasi</string>
     <string name="reminder_set_up">Alarm pengingat telah diaktifkan</string>
     <string name="reminder_canceled">Alarm pengingat telah dibatalkan</string>
+    <string name="language">Language</string>
 </resources>

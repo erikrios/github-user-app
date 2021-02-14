@@ -24,4 +24,5 @@
     <string name="back_to_app_message">Don\'t forget to come back to the app</string>
     <string name="reminder_set_up">Reminder alarm set up</string>
     <string name="reminder_canceled">Reminder alarm canceled</string>
+    <string name="language">Language</string>
 </resources>
