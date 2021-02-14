@@ -1,6 +1,8 @@
 package io.erikrios.github.githubuserapp.ui.fragments
 
+import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +16,7 @@ import io.erikrios.github.githubuserapp.datastrores.SettingPreferences
 import io.erikrios.github.githubuserapp.receivers.AlarmReceiver.Companion.TYPE_REMINDER
 import io.erikrios.github.githubuserapp.ui.viewmodels.SettingsViewModel
 import io.erikrios.github.githubuserapp.ui.viewmodels.SettingsViewModelFactory
+import java.util.*
 
 class SettingsFragment : Fragment() {
 
@@ -34,6 +37,7 @@ class SettingsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         handleToolbar()
+        handleChangeLanguageItem()
         viewModel.isNotificationActive().observe(viewLifecycleOwner) { isActive ->
             binding?.itemSettings?.switchReminder?.isChecked = isActive
             if (isActive) {
@@ -66,5 +70,17 @@ class SettingsFragment : Fragment() {
                 findNavController().popBackStack()
             }
         }
+    }
+
+    private fun handleChangeLanguageItem() {
+        binding?.apply {
+            itemChangeLanguage.tvRecentLanguage.text = Locale.getDefault().displayLanguage
+            itemChangeLanguage.clItemChangeLanguage.setOnClickListener { changeLanguage() }
+        }
+    }
+
+    private fun changeLanguage() {
+        val intent = Intent(Settings.ACTION_LOCALE_SETTINGS)
+        startActivity(intent)
     }
 }
