@@ -4,6 +4,8 @@
     package="io.erikrios.github.githubuserapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <permission
         android:name="io.erikrios.github.githubuserapp.READ_DATABASE"
@@ -23,7 +25,8 @@
         <receiver
             android:name=".receivers.AlarmReceiver"
             android:enabled="true"
-            android:exported="true" />
+            android:exported="true"
+            tools:ignore="ExportedReceiver" />
 
         <provider
             android:name=".providers.UserProvider"
