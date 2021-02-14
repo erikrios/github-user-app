@@ -48,8 +48,8 @@ class AlarmReceiver : BroadcastReceiver() {
 
         val calendar = Calendar.getInstance()
         calendar.apply {
-            set(Calendar.HOUR_OF_DAY, 16)
-            set(Calendar.MINUTE, 44)
+            set(Calendar.HOUR_OF_DAY, 9)
+            set(Calendar.MINUTE, 0)
             set(Calendar.SECOND, 0)
             set(Calendar.MILLISECOND, 0)
         }
@@ -108,6 +108,7 @@ class AlarmReceiver : BroadcastReceiver() {
             .setContentText(message)
             .setColor(ContextCompat.getColor(context, android.R.color.transparent))
             .setVibrate(longArrayOf(1000, 1000, 1000, 1000, 1000))
+            .setAutoCancel(true)
             .setSound(alarmSound)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
