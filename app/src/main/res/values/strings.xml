@@ -22,4 +22,6 @@
     <string name="favorite_added">Successfully added to favorite</string>
     <string name="favorite_removed">Successfully removed from favorite</string>
     <string name="back_to_app_message">Don\'t forget to come back to the app</string>
+    <string name="reminder_set_up">Reminder alarm set up</string>
+    <string name="reminder_canceled">Reminder alarm canceled</string>
 </resources>
