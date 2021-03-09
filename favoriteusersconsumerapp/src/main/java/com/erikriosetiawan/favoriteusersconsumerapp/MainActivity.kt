@@ -1,12 +1,13 @@
 package com.erikriosetiawan.favoriteusersconsumerapp
 
+import android.content.Intent
 import android.database.ContentObserver
 import android.os.Bundle
 import android.os.Handler
 import android.os.HandlerThread
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.erikriosetiawan.favoriteusersconsumerapp.DetailsActivity.Companion.EXTRA_USER_KEY
 import com.erikriosetiawan.favoriteusersconsumerapp.adapters.UserAdapter
 import com.erikriosetiawan.favoriteusersconsumerapp.databases.DatabaseContract.UserColumns.Companion.CONTENT_URI
 import com.erikriosetiawan.favoriteusersconsumerapp.databinding.ActivityMainBinding
@@ -90,7 +91,10 @@ class MainActivity : AppCompatActivity() {
     private fun setRecyclerView(users: List<User>) {
         val adapter = UserAdapter(this, users)
         adapter.setOnItemClickListener { user ->
-            Toast.makeText(this, user.name, Toast.LENGTH_SHORT).show()
+            Intent(this, DetailsActivity::class.java).also {
+                it.putExtra(EXTRA_USER_KEY, user)
+                startActivity(it)
+            }
         }
         binding.rvUsers.adapter = adapter
     }
