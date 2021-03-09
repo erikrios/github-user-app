@@ -5,8 +5,15 @@ import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.erikriosetiawan.favoriteusersconsumerapp.databases.DatabaseContract.UserColumns.Companion.CONTENT_URI
+import com.erikriosetiawan.favoriteusersconsumerapp.databases.DatabaseContract.UserColumns.Companion.toContentValues
 import com.erikriosetiawan.favoriteusersconsumerapp.databinding.ActivityDetailsBinding
 import com.erikriosetiawan.favoriteusersconsumerapp.models.User
+import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 
 class DetailsActivity : AppCompatActivity() {
 
@@ -28,6 +35,7 @@ class DetailsActivity : AppCompatActivity() {
         }
 
         val user = intent.getParcelableExtra<User>(EXTRA_USER_KEY) as User
+        val uriWithId = Uri.parse("$CONTENT_URI/${user.id}")
         setActionBar(user.name ?: getString(R.string.user_details))
         binding.apply {
             Glide.with(this@DetailsActivity).load(user.avatarUrl).into(imgAvatar)
@@ -40,11 +48,12 @@ class DetailsActivity : AppCompatActivity() {
 
             fabFavorite.setOnClickListener {
                 if (isFavorite) {
+                    deleteUserAsync(uriWithId)
                     fabFavorite.setImageResource(R.drawable.ic_baseline_favorite_border_24)
                 } else {
+                    insertUserAsync(user)
                     fabFavorite.setImageResource(R.drawable.ic_baseline_favorite_24)
                 }
-                isFavorite = !isFavorite
             }
 
             fabOpenInBrowser.setOnClickListener {
@@ -68,5 +77,40 @@ class DetailsActivity : AppCompatActivity() {
         supportActionBar?.title = title
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
+    }
+
+    private fun deleteUserAsync(uri: Uri) {
+        GlobalScope.launch(Dispatchers.Main) {
+            val deferred = async(Dispatchers.IO) {
+                contentResolver.delete(uri, null, null)
+            }
+            val affectedRows = deferred.await()
+            if (affectedRows > 1) {
+                isFavorite = false
+                Snackbar.make(
+                    binding.coordinatorLayout,
+                    getString(R.string.remove_favorite_message),
+                    Snackbar.LENGTH_SHORT
+                ).show()
+            }
+        }
+    }
+
+    private fun insertUserAsync(user: User) {
+        val contentValues = toContentValues(user)
+        GlobalScope.launch(Dispatchers.Main) {
+            val deferred = async(Dispatchers.IO) {
+                contentResolver.insert(CONTENT_URI, contentValues)
+            }
+            val uriResult = deferred.await()
+            uriResult?.let {
+                isFavorite = true
+                Snackbar.make(
+                    binding.coordinatorLayout,
+                    getString(R.string.add_favorite_message),
+                    Snackbar.LENGTH_SHORT
+                ).show()
+            }
+        }
     }
 }
