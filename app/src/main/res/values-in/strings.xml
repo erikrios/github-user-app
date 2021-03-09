@@ -20,7 +20,7 @@
     <string name="reminder_description">Ingatkan saya untuk kembali ke aplikasi pada pukul 09.00 pagi</string>
     <string name="favorites">Favorit</string>
     <string name="favorite_added">Berhasil menambahkan ke favorit</string>
-    <string name="favorite_removed">Berasil menghapus dari favorit</string>
+    <string name="favorite_removed">Berhasil menghapus dari favorit</string>
     <string name="back_to_app_message">Jangan lupa kembali ke aplikasi</string>
     <string name="reminder_set_up">Alarm pengingat telah diaktifkan</string>
     <string name="reminder_canceled">Alarm pengingat telah dibatalkan</string>
