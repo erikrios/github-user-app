@@ -1,14 +1,12 @@
 package io.erikrios.github.githubuserapp.databases
 
 import android.content.ContentValues
-import android.net.Uri
 import android.provider.BaseColumns
 import io.erikrios.github.githubuserapp.models.User
 
 object DatabaseContract {
 
     const val AUTHORITY = "io.erikrios.github.githubuserapp"
-    const val SCHEME = "content"
 
     class UserColumns : BaseColumns {
         companion object {
@@ -30,12 +28,6 @@ object DatabaseContract {
             const val COLUMN_HIREABLE = "hireable"
             const val COLUMN_CREATED_AT = "created_at"
             const val COLUMN_UPDATED_AT = "updated_at"
-
-            // To create URI content://io.erikrios.github.githubuserapp/users
-            val CONTENT_URI: Uri = Uri.Builder().scheme(SCHEME)
-                .authority(AUTHORITY)
-                .appendPath(TABLE_NAME)
-                .build()
 
             fun fromContentValues(values: ContentValues?): User {
                 val user = User()
