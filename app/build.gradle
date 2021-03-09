@@ -75,7 +75,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     // Recycler View
-    implementation 'androidx.recyclerview:recyclerview:1.2.0-beta01'
+    implementation 'androidx.recyclerview:recyclerview:1.2.0-beta02'
 
     // Navigation Components
     implementation 'android.arch.navigation:navigation-fragment-ktx:2.3.0'
