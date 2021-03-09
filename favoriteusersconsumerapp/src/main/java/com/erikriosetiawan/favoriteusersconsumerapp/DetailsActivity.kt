@@ -40,9 +40,9 @@ class DetailsActivity : AppCompatActivity() {
 
             fabFavorite.setOnClickListener {
                 if (isFavorite) {
-                    fabFavorite.setImageResource(R.drawable.ic_baseline_favorite_24)
-                } else {
                     fabFavorite.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+                } else {
+                    fabFavorite.setImageResource(R.drawable.ic_baseline_favorite_24)
                 }
                 isFavorite = !isFavorite
             }
