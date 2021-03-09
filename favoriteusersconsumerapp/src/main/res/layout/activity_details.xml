@@ -232,7 +232,7 @@
         android:layout_marginEnd="25dp"
         android:backgroundTint="@color/purple_200"
         android:contentDescription="@string/share_button"
-        android:src="@drawable/ic_baseline_favorite_border_24"
+        android:src="@drawable/ic_baseline_favorite_24"
         app:backgroundTint="@color/purple_200"
         app:layout_anchor="@id/app_bar_layout"
         app:layout_anchorGravity="bottom|end|right"
