@@ -1,4 +1,14 @@
 <resources>
     <string name="app_name">Favorite Users Consumer App</string>
     <string name="favorite_user_empty">Favorite users is empty</string>
+    <string name="user_avatar">User Avatar</string>
+    <string name="share_button">Share Button</string>
+    <string name="company">Company</string>
+    <string name="location">Location</string>
+    <string name="username">Username</string>
+    <string name="followers">Followers</string>
+    <string name="repository">Repository</string>
+    <string name="following">Following</string>
+    <string name="open_in_browser">Open in Browser</string>
+    <string name="share_message">View %1$s Github Profile Pages at : %2$s</string>
 </resources>

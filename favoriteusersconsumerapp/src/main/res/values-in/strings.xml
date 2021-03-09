@@ -2,4 +2,15 @@
 <resources>
     <string name="app_name">Favorite Users Consumer App</string>
     <string name="favorite_user_empty">Pengguna favorit kosong</string>
+    <string name="user_avatar">Avatar Pengguna</string>
+    <string name="share_button">Tombol Bagikan</string>
+    <string name="company">Perusahaan</string>
+    <string name="location">Lokasi</string>
+    <string name="username">Nama Pengguna</string>
+    <string name="followers">Pengikut</string>
+    <string name="repository">Repository</string>
+    <string name="following">Mengikuti</string>
+    <string name="open_in_browser">Buka di Peramban</string>
+    <string name="share_message">Lihat Halaman Profil Github %1$s at : %2$s</string>
+
 </resources>
