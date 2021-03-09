@@ -11,4 +11,5 @@
     <string name="following">Following</string>
     <string name="open_in_browser">Open in Browser</string>
     <string name="share_message">View %1$s Github Profile Pages at : %2$s</string>
+    <string name="user_details">User Details</string>
 </resources>
