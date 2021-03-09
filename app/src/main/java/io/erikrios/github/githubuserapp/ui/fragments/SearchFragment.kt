@@ -21,7 +21,7 @@ import io.erikrios.github.githubuserapp.databinding.FragmentSearchBinding
 import io.erikrios.github.githubuserapp.models.User
 import io.erikrios.github.githubuserapp.repositories.UserRepository
 import io.erikrios.github.githubuserapp.ui.viewmodels.SearchViewModel
-import io.erikrios.github.githubuserapp.ui.viewmodels.SearchViewModelFactory
+import io.erikrios.github.githubuserapp.ui.viewmodels.ViewModelFactory
 import io.erikrios.github.githubuserapp.ui.viewstates.UserResponseViewState
 
 class SearchFragment : Fragment() {
@@ -36,7 +36,7 @@ class SearchFragment : Fragment() {
     ): View? {
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
 
-        val factory = SearchViewModelFactory(UserRepository())
+        val factory = ViewModelFactory(UserRepository())
         viewModel = ViewModelProvider(this, factory).get(SearchViewModel::class.java).apply {
             viewState.observe(viewLifecycleOwner, Observer(this@SearchFragment::handleState))
         }

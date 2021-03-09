@@ -15,7 +15,7 @@ import io.erikrios.github.githubuserapp.databinding.FragmentSettingsBinding
 import io.erikrios.github.githubuserapp.datastrores.SettingPreferences
 import io.erikrios.github.githubuserapp.receivers.AlarmReceiver.Companion.TYPE_REMINDER
 import io.erikrios.github.githubuserapp.ui.viewmodels.SettingsViewModel
-import io.erikrios.github.githubuserapp.ui.viewmodels.SettingsViewModelFactory
+import io.erikrios.github.githubuserapp.ui.viewmodels.ViewModelFactory
 import java.util.*
 
 class SettingsFragment : Fragment() {
@@ -29,7 +29,7 @@ class SettingsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
-        val factory = SettingsViewModelFactory(SettingPreferences(requireContext()))
+        val factory = ViewModelFactory(requireContext(), SettingPreferences(requireContext()))
         viewModel = ViewModelProvider(this, factory).get(SettingsViewModel::class.java)
         return binding?.root
     }

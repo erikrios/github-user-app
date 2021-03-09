@@ -24,7 +24,7 @@ import io.erikrios.github.githubuserapp.databinding.FragmentsDetailsBinding
 import io.erikrios.github.githubuserapp.models.User
 import io.erikrios.github.githubuserapp.repositories.UserRepository
 import io.erikrios.github.githubuserapp.ui.viewmodels.DetailsViewModel
-import io.erikrios.github.githubuserapp.ui.viewmodels.DetailsViewModelFactory
+import io.erikrios.github.githubuserapp.ui.viewmodels.ViewModelFactory
 import io.erikrios.github.githubuserapp.ui.viewstates.UserViewState
 
 class DetailsFragment : Fragment() {
@@ -48,7 +48,7 @@ class DetailsFragment : Fragment() {
         user = args.user
         val repository = UserRepository(UserDatabase(requireContext()))
         val factory =
-            DetailsViewModelFactory(repository, user.username)
+            ViewModelFactory(repository, user.username)
         viewModel = ViewModelProvider(this, factory).get(DetailsViewModel::class.java)
         return binding?.root
     }

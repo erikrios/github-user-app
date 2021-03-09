@@ -16,7 +16,7 @@ import io.erikrios.github.githubuserapp.databinding.FragmentFavoritesBinding
 import io.erikrios.github.githubuserapp.models.User
 import io.erikrios.github.githubuserapp.repositories.UserRepository
 import io.erikrios.github.githubuserapp.ui.viewmodels.FavoritesViewModel
-import io.erikrios.github.githubuserapp.ui.viewmodels.FavoritesViewModelFactory
+import io.erikrios.github.githubuserapp.ui.viewmodels.ViewModelFactory
 import io.erikrios.github.githubuserapp.ui.viewstates.UsersViewState
 
 class FavoritesFragment : Fragment() {
@@ -31,7 +31,7 @@ class FavoritesFragment : Fragment() {
     ): View? {
         _binding = FragmentFavoritesBinding.inflate(inflater, container, false)
         val repository = UserRepository(UserDatabase(requireContext()))
-        val factory = FavoritesViewModelFactory(repository)
+        val factory = ViewModelFactory(repository)
         viewModel = ViewModelProvider(this, factory).get(FavoritesViewModel::class.java)
         return binding?.root
     }
