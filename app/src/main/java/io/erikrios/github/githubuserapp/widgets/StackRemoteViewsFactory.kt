@@ -2,22 +2,17 @@ package io.erikrios.github.githubuserapp.widgets
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.drawable.Drawable
 import android.widget.RemoteViews
 import android.widget.RemoteViewsService
 import androidx.core.os.bundleOf
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.target.CustomTarget
-import com.bumptech.glide.request.transition.Transition
 import io.erikrios.github.githubuserapp.R
 import io.erikrios.github.githubuserapp.databases.UserDatabase
 import io.erikrios.github.githubuserapp.models.User
 import io.erikrios.github.githubuserapp.widgets.GithubUserWidget.Companion.EXTRA_NAME
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 internal class StackRemoteViewsFactory(private val context: Context) :
     RemoteViewsService.RemoteViewsFactory {
@@ -29,7 +24,7 @@ internal class StackRemoteViewsFactory(private val context: Context) :
     }
 
     override fun onDataSetChanged() {
-        GlobalScope.launch(Dispatchers.Main) {
+        runBlocking {
             val deferred = async(Dispatchers.IO) {
                 UserDatabase(context).getUserDao().getUsers()
             }
@@ -47,17 +42,20 @@ internal class StackRemoteViewsFactory(private val context: Context) :
 
     override fun getViewAt(position: Int): RemoteViews {
         val remoteViews = RemoteViews(context.packageName, R.layout.widget_item)
-        Glide.with(context)
-            .asBitmap()
-            .load(users[position].avatarUrl)
-            .into(object : CustomTarget<Bitmap>() {
-                override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-                    remoteViews.setImageViewBitmap(R.id.image_view, resource)
-                }
 
-                override fun onLoadCleared(placeholder: Drawable?) {}
-            })
+        if (users.isNotEmpty()) {
+            try {
+                val bitmap = Glide.with(context)
+                    .asBitmap()
+                    .load(users[position].avatarUrl)
+                    .submit(512, 512)
+                    .get()
 
+                remoteViews.setImageViewBitmap(R.id.image_view, bitmap)
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
         val extras = bundleOf(EXTRA_NAME to users[position].name)
         val fillIntent = Intent()
         fillIntent.putExtras(extras)

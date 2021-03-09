@@ -27,7 +27,7 @@ class GithubUserWidget : AppWidgetProvider() {
 
             val views = RemoteViews(context.packageName, R.layout.github_user_widget)
             views.setRemoteAdapter(R.id.stack_view, intent)
-            views.setEmptyView(R.id.stack_view, R.id.empt_view)
+            views.setEmptyView(R.id.stack_view, R.id.empty_view)
 
             val toastIntent = Intent(context, GithubUserWidget::class.java)
             toastIntent.action = TOAST_ACTION
