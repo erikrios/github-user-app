@@ -85,7 +85,7 @@ class DetailsActivity : AppCompatActivity() {
                 contentResolver.delete(uri, null, null)
             }
             val affectedRows = deferred.await()
-            if (affectedRows > 1) {
+            if (affectedRows > 0) {
                 isFavorite = false
                 Snackbar.make(
                     binding.coordinatorLayout,
