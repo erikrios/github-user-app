@@ -82,6 +82,30 @@ object DatabaseContract {
                 }
                 return user
             }
+
+            fun toContentValues(user: User): ContentValues {
+                val values = ContentValues()
+                user.apply {
+                    values.put(COLUMN_ID, id)
+                    values.put(COLUMN_USERNAME, username)
+                    name?.let { values.put(COLUMN_NAME, it) }
+                    location?.let { values.put(COLUMN_LOCATION, it) }
+                    publicRepositories?.let { values.put(COLUMN_PUBLIC_REPOSITORIES, it) }
+                    publicGists?.let { values.put(COLUMN_PUBLIC_GISTS, it) }
+                    company?.let { values.put(COLUMN_COMPANY, it) }
+                    followers?.let { values.put(COLUMN_FOLLOWERS, it) }
+                    following?.let { values.put(COLUMN_FOLLOWING, it) }
+                    values.put(COLUMN_AVATAR_URL, avatarUrl)
+                    values.put(COLUMN_TYPE, type)
+                    values.put(COLUMN_HTML_URL, htmlUrl)
+                    blog?.let { values.put(COLUMN_BLOG, it) }
+                    bio?.let { values.put(COLUMN_BIO, it) }
+                    hireable?.let { values.put(COLUMN_HIREABLE, it) }
+                    createdAt?.let { values.put(COLUMN_CREATED_AT, it) }
+                    values.put(COLUMN_UPDATED_AT, updatedAt)
+                }
+                return values
+            }
         }
     }
 }
