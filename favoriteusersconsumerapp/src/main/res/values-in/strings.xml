@@ -13,5 +13,6 @@
     <string name="open_in_browser">Buka di Peramban</string>
     <string name="share_message">Lihat Halaman Profil Github %1$s at : %2$s</string>
     <string name="user_details">Detail Pengguna</string>
-    <string name="remove_favorite_message">Menghapus pengguna dari favorite berhasil</string>
+    <string name="remove_favorite_message">Menghapus pengguna dari favorit berhasil</string>
+    <string name="add_favorite_message">Menambahkan pengguna ke favorit berhasi</string>
 </resources>
